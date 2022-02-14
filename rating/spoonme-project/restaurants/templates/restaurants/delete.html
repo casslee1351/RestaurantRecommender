@@ -1,0 +1,14 @@
+{% extends 'restaurants/base.html' %}
+
+{% block content %} 
+    
+<form method="POST" action="">
+    {% csrf_token %}
+    <p>Are you sure you want to delete you {{rating.name}} rating?</p>
+    <a class="btn btn-secondary" href="{{request.META.HTTP_REFERER}}">Cancel</a>
+    <input type="submit" value="confirm" class="btn btn-primary"/>
+
+
+</form>
+
+{% endblock %}

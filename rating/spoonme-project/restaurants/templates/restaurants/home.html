@@ -1,0 +1,21 @@
+{% extends 'restaurants/base.html' %}
+
+{% block title%}Home{%endblock%}
+
+{% block content %} 
+{% if request.user.is_authenticated %}
+    <p>Welcome {{request.user}}!</p>
+    <div class="col-sm-6">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+            Top Picks
+            </div>
+            <ul class="list-group list-group-flush">
+            <li class="list-group-item">Pick 1</li>
+            <li class="list-group-item">Pick 2</li>
+            <li class="list-group-item">Pick 3</li>
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

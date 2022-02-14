@@ -1,0 +1,37 @@
+{% extends 'restaurants/base.html' %}
+
+{% block content %}
+
+{% if page == 'login' %}
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label>Username: </label>
+        <input type="text" name="username" placeholder="Username..." />
+
+        <label>Password: </label>
+        <input type="password" name="password" placeholder="Password..." />
+
+        <p>Don't have an account? Create one <a href="{% url 'register' %}">here</a></p>
+        <input class="btn btn-primary" type="submit" value="Login" />
+
+    </form>
+    
+   
+</div>
+{% else %}
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+        <input class="btn btn-primary" type="submit" value="Register" />
+
+    </form>
+    
+    
+</div>
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'restaurants/base.html' %}
+
+{% block title%}Add Rating{%endblock%}
+
+{% block content %} 
+        <form method="POST" action=""> 
+            {% csrf_token %}
+            <div>
+                {{form.restaurant.label}}
+                {{form.restaurant}}
+                {{form.rating.label}}
+                {{form.rating}}<output>5.0</output>
+                
+                <input type="submit" id="add-rating" value="Submit" class="btn btn-primary"/>
+            </div>
+        </form>
+
+{% endblock %}
+
+
+
