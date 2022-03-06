@@ -32,7 +32,10 @@
                         <a class="nav-link active" href="/">Home</a>
                     </li>
                     {% if request.user.is_authenticated %}
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'ratings' %}">Reviews</a>
+                    </li>
+                    {% comment %} <li class="nav-item dropdown">
                         <a class="nav-link active dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Ratings
                         </a>
@@ -40,7 +43,7 @@
                             <a class="dropdown-item" href="{% url 'ratings' %}">My Ratings</a>
                             <a class="dropdown-item" href="{% url 'addrating' %}">Add Rating</a>
                         </div>
-                    </li>
+                    </li> {% endcomment %}
                     
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url 'logout' %}">Logout</a>

@@ -16,6 +16,7 @@
     width: 10%;
   }
 </style>
+<a class="btn btn-outline-primary" href="{% url 'addrating' %}">Add Rating</a>
 
   <table class="table table-striped table-sm" style="width:500px;">
     <thead class="thead-light">
@@ -26,19 +27,22 @@
       </tr>
     </thead>
     <tbody>
+      
       {% for rating in ratings %}
-      <tr>
-        <th scope="row">{{rating.restaurant}}</th>
-        <td>{{rating.rating}}</td>
-        <td>
-          <a
-            class="btn btn-outline-primary"
-            href="{% url 'update-rating' rating.id %}">Edit</a>
-          <a
-            class="btn btn-outline-danger"
-            href="{% url 'delete-rating' rating.id %}">Delete</a>
-        </td>
-      </tr>
+        {% if request.user == rating.user %}
+        <tr>
+          <th scope="row">{{rating.restaurant}}</th>
+          <td>{{rating.rating}}</td>
+          <td>
+            <a
+              class="btn btn-outline-primary"
+              href="{% url 'update-rating' rating.id %}">Edit</a>
+            <a
+              class="btn btn-outline-danger"
+              href="{% url 'delete-rating' rating.id %}">Delete</a>
+          </td>
+        </tr>
+        {% endif %}
       {% endfor %}
     </tbody>
 

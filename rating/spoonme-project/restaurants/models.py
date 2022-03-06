@@ -20,6 +20,7 @@ class Rating(models.Model):
     rating = models.CharField(max_length=10)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    # add body for review section
 
     class Meta:
         ordering = ['-updated', '-created']
