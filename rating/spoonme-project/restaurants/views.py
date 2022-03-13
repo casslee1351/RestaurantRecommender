@@ -9,6 +9,8 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Rating, Restaurant
 from .forms import RatingForm
 
+# research-- username, email, pass for form / view
+
 
 def loginPage(request):
     page = 'login'

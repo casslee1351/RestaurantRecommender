@@ -18,9 +18,9 @@ class Rating(models.Model):
     restaurant = models.ForeignKey(
         Restaurant, on_delete=models.CASCADE, null=False)
     rating = models.CharField(max_length=10)
+    review = models.TextField(null=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    # add body for review section
 
     class Meta:
         ordering = ['-updated', '-created']

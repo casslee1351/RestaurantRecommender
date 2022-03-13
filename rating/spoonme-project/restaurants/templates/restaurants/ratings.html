@@ -3,6 +3,7 @@
 {% block title%}My Ratings{%endblock%} 
 
 {% block content %}
+<!-- CHANGE RATINGS TABLE TO DISPLAY REVIEWS AS CARDS -->
 
 <style type="text/css">
   table {
@@ -23,6 +24,7 @@
       <tr>
         <th scope="col" style="width:200px;">Restaurant</th>
         <th scope="col" style="width:150px;">Rating</th>
+        <th scope="col" style="width:150px;">Review</th>
         <th scope="col" style="width:150px;">Update</th>
       </tr>
     </thead>
@@ -33,6 +35,7 @@
         <tr>
           <th scope="row">{{rating.restaurant}}</th>
           <td>{{rating.rating}}</td>
+          <td>{{rating.review}}</td>
           <td>
             <a
               class="btn btn-outline-primary"

@@ -3,15 +3,47 @@
 {% block title%}Add Rating{%endblock%}
 
 {% block content %} 
+
+
+<style type="text/css">
+    #rating-label {
+        margin-left: 30px;
+        margin-right: 5px
+    }
+    #restaurant-label {
+        margin-right: 5px
+    }
+    #review {
+        margin-top: 40px;
+    }
+    #rating {
+        margin-top: 20px;
+    }
+    #add-rating {
+        margin-top: 10px;
+    }
+    output {
+        margin-left: 5px;
+    }
+</style>
         <form method="POST" action=""> 
             {% csrf_token %}
             <div>
-                {{form.restaurant.label}}
-                {{form.restaurant}}
-                {{form.rating.label}}
-                {{form.rating}}<output>5.0</output>
                 
-                <input type="submit" id="add-rating" value="Submit" class="btn btn-primary"/>
+                <div class="form-group">
+                    <div class="col-4">
+                        <div class="col">
+                            <label id="restaurant-label">{{form.restaurant.label}}</label>
+                            {{form.restaurant}}
+                            <label id="rating-label">{{form.rating.label}}</label>
+                            {{form.rating}}<output>5.0</output>
+                            {{form.review}}
+
+                            <input type="submit" id="add-rating" value="Submit" class="btn btn-primary"/>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </form>
 
