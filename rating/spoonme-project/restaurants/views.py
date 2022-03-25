@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models import Avg
+
 from .models import Rating, Restaurant
 from .forms import RatingForm
 
@@ -65,9 +67,24 @@ def home(request):
     return render(request, "restaurants/home.html", {})
 
 
+def restaurant(request, pk):
+    # want to add search bar so user can search for restaurants
+    # want to show restaurant list as paginated results
+    restaurant = Restaurant.objects.get(id=pk)
+    context = {'restaurant': restaurant}
+    return render(request, "restaurants/restaurant.html", context)
+
+
+def restaurantList(request):
+    restaurants = Restaurant.objects.all()
+
+    context = {'restaurants': restaurants}
+    return render(request, "restaurants/restaurant-list.html", context)
+
+
 @login_required(login_url="login")
 def ratings(request):
-
+    # want to limit the number of ratings listed as paginated list
     ratings = Rating.objects.all()
     context = {'ratings': ratings}
     return render(request, "restaurants/ratings.html", context)
