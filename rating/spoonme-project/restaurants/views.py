@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-from django.db.models import Avg
 
 from .models import Rating, Restaurant
 from .forms import RatingForm
@@ -76,6 +75,8 @@ def restaurant(request, pk):
 
 
 def restaurantList(request):
+    # add pagination to restaurant list view
+    # add pagination to restaurant-list.html
     restaurants = Restaurant.objects.all()
 
     context = {'restaurants': restaurants}
@@ -84,7 +85,8 @@ def restaurantList(request):
 
 @login_required(login_url="login")
 def ratings(request):
-    # want to limit the number of ratings listed as paginated list
+    # add pagination to ratings list view
+    # add pagination to ratings.html
     ratings = Rating.objects.all()
     context = {'ratings': ratings}
     return render(request, "restaurants/ratings.html", context)
