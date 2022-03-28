@@ -2,32 +2,44 @@
 
 {% block content %}
 
-<!-- {% for restaurant in page_obj %}-->
-{% for restaurant in restaurants %}
-    <li><a href="{% url 'restaurant' restaurant.id %}">{{restaurant.name}}</a></li>
+{% for restaurant in page_obj %}
+    <div class="list-group">
+        <a class="list-group-item list-group-item-action" href="{% url 'restaurant' restaurant.id %}">{{restaurant.name}}</a>
+    </div>
+
 
 
 {% endfor %}
 
-<!-- TODO: TEST CODE BELOW -- IF SUCCESSFUL, ADD BOOTSTRAP STYLING
+<!-- TODO: TEST CODE BELOW -- IF SUCCESSFUL, ADD BOOTSTRAP STYLING-->
 
-<div class="pagination">
-    <span class="step-links">
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        
+      
         {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        
+        <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
         {% endif %}
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
+      
+        <span class="current"><li class="page-item"><a class="page-link" href="#">{{page_obj.number}}</a></li></span>
 
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
 
--->
-{% endblock%}
+      {% if page_obj.has_next %}
+      <span class="current"><li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{page_obj.next_page_number}}</a></li></span>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+
+
+{% endblock %}
