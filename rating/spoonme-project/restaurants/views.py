@@ -76,17 +76,12 @@ def restaurant(request, pk):
 
 
 def restaurantList(request):
-    # TODO: TEST PAGINATION FOR RESTAURANT LIST
-
-    # add pagination to restaurant list view
-    # add pagination to restaurant-list.html
     restaurants = Restaurant.objects.all()
     paginator = Paginator(restaurants, 5)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    # add 'page_obj':page_obj to context dict
     context = {'restaurants': restaurants, 'page_obj': page_obj}
     return render(request, "restaurants/restaurant-list.html", context)
 

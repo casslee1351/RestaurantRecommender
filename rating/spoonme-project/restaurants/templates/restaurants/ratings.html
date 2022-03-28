@@ -3,7 +3,6 @@
 {% block title%}My Ratings{%endblock%} 
 
 {% block content %}
-<!-- CHANGE RATINGS TABLE TO DISPLAY REVIEWS AS CARDS -->
 <a class="btn btn-outline-primary" href="{% url 'addrating' %}">Add New Review</a>
   <h2>My Reviews</h2>
     {% for rating in ratings%}
