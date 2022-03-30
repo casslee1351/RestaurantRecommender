@@ -15,6 +15,12 @@
             </div>
         </div> 
       {% endif %}
+
+      {% empty %}
+      <div class="alert alert-secondary" role="alert">
+        Looks like you haven't reviewed anything yet! :(
+      </div>
+    
     {% endfor %}
   
   {% endblock %}
