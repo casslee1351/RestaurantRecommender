@@ -3,24 +3,33 @@
 {% block title%}My Ratings{%endblock%} 
 
 {% block content %}
+<!-- MOVE THIS BUTTON -->
 <a class="btn btn-outline-primary" href="{% url 'addrating' %}">Add New Review</a>
-  <h2>My Reviews</h2>
-    {% for rating in ratings%}
-      {% if request.user == rating.user %}
-        <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+
+
+
+  <h1 class="display-4">My Reviews</h1>
+    {% for rating in ratings %}
+      
+        <div class="card text-dark bg-light mb-3" style="max-width: 25rem;">
           <div class="card-header">{{rating.restaurant}}</div>
             <div class="card-body">
-              <h5 class="card-title">{{rating.rating}}</h5>
+              <h5 class="card-title">{{rating.rating}} /10</h5>
               <p class="card-text">{{rating.review}}</p>
             </div>
-        </div> 
-      {% endif %}
+          
+          <div class="card-footer text-muted">{{rating.updated}}
+            <div class= "btn-toolbar float-right">
+              <a class="btn btn-outline-primary mr-2" href="{% url 'update-rating' rating.id %}">Edit</a>
+              <a class="btn btn-outline-danger" href="{% url 'delete-rating' rating.id %}">Delete</a>
+            </div>
+          </div>
+        </div>
 
-      {% empty %}
-      <div class="alert alert-secondary" role="alert">
-        Looks like you haven't reviewed anything yet! :(
-      </div>
-    
+        {% empty %}
+          <div class="alert alert-light" role="alert"> Oops! Looks like you haven't reviewed anything yet! :( </div>
+      
     {% endfor %}
+
   
-  {% endblock %}
+{% endblock %}
