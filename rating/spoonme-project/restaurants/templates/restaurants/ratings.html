@@ -6,6 +6,8 @@
 <!-- MOVE THIS BUTTON -->
 <a class="btn btn-outline-primary" href="{% url 'addrating' %}">Add New Review</a>
 
+{% for rating in page_obj %}
+
 
 
   <h1 class="display-4">My Reviews</h1>
@@ -31,5 +33,35 @@
       
     {% endfor %}
 
-  
+{% endfor %}
+
+<!-- ADD ARIA LABELS FOR ARROWS -->
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+      
+    
+      {% if page_obj.has_previous %}
+      
+      <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+  </li>
+      {% endif %}
+
+    
+      <span class="current"><li class="page-item"><a class="page-link" href="#">{{page_obj.number}}</a></li></span>
+
+
+    {% if page_obj.has_next %}
+    <span class="current"><li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{page_obj.next_page_number}}</a></li></span>
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+
 {% endblock %}

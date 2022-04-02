@@ -88,12 +88,15 @@ def restaurantList(request):
 
 @login_required(login_url="login")
 def ratings(request):
-    # add pagination to ratings list view
     # add pagination to ratings.html
     user = request.user
-
     ratings = Rating.objects.filter(user=user).order_by('-updated')
-    context = {'ratings': ratings, 'user': user}
+    paginator = Paginator(ratings, 10)
+
+    page_number = paginator.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {'ratings': ratings, 'user': user, 'page_obj':page_obj}
     return render(request, "restaurants/ratings.html", context)
 
 
