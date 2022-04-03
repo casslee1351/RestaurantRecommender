@@ -6,12 +6,9 @@
 <!-- MOVE THIS BUTTON -->
 <a class="btn btn-outline-primary" href="{% url 'addrating' %}">Add New Review</a>
 
+
+<h1 class="display-4">My Reviews</h1>
 {% for rating in page_obj %}
-
-
-
-  <h1 class="display-4">My Reviews</h1>
-    {% for rating in ratings %}
       
         <div class="card text-dark bg-light mb-3" style="max-width: 25rem;">
           <div class="card-header">{{rating.restaurant}}</div>
@@ -30,8 +27,6 @@
 
         {% empty %}
           <div class="alert alert-light" role="alert"> Oops! Looks like you haven't reviewed anything yet! :( </div>
-      
-    {% endfor %}
 
 {% endfor %}
 

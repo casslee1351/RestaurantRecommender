@@ -11,8 +11,6 @@ from django.core.paginator import Paginator
 from .models import Rating, Restaurant
 from .forms import RatingForm
 
-# research-- username, email, pass for form / view
-
 
 def loginPage(request):
     page = 'login'
@@ -88,15 +86,14 @@ def restaurantList(request):
 
 @login_required(login_url="login")
 def ratings(request):
-    # add pagination to ratings.html
     user = request.user
     ratings = Rating.objects.filter(user=user).order_by('-updated')
-    paginator = Paginator(ratings, 10)
+    paginator = Paginator(ratings, 5)
 
-    page_number = paginator.GET.get('page')
+    page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    context = {'ratings': ratings, 'user': user, 'page_obj':page_obj}
+    context = {'ratings': ratings, 'user': user, 'page_obj': page_obj}
     return render(request, "restaurants/ratings.html", context)
 
 
