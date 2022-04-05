@@ -67,7 +67,7 @@ def home(request):
 
 def restaurant(request, pk):
     # want to add search bar so user can search for restaurants
-    # want to show restaurant list as paginated results
+    
     restaurant = Restaurant.objects.get(id=pk)
     context = {'restaurant': restaurant}
     return render(request, "restaurants/restaurant.html", context)
