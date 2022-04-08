@@ -2,7 +2,9 @@ import decimal
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+# Need to add to restaurant database
+# make sure type can be null
+# add address and link?
 
 
 class Restaurant(models.Model):
