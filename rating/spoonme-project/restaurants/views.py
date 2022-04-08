@@ -67,14 +67,17 @@ def home(request):
 
 def restaurant(request, pk):
     # want to add search bar so user can search for restaurants
-    
+
     restaurant = Restaurant.objects.get(id=pk)
     context = {'restaurant': restaurant}
     return render(request, "restaurants/restaurant.html", context)
 
 
 def restaurantList(request):
+    # want to add alphabetical option as well
+
     restaurants = Restaurant.objects.all()
+    # change to show more per page (about 20?)
     paginator = Paginator(restaurants, 5)
 
     page_number = request.GET.get('page')

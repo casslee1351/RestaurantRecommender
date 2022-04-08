@@ -1,10 +1,12 @@
 {% extends 'restaurants/base.html' %}
 
-{% block content %}
 
+<!-- FIX PAGINATION TO SHOW MULTIPLE PAGE NUMBERS (ELIDED) -->
+{% block content %}
+<div class="container">
 {% for restaurant in page_obj %}
-    <div class="list-group">
-        <a class="list-group-item list-group-item-action" href="{% url 'restaurant' restaurant.id %}">{{restaurant.name}}</a>
+    <div class="list-group mt-3">
+        <a class="list-group-item list-group-item-action list-group-item-light" href="{% url 'restaurant' restaurant.id %}">{{restaurant.name}}</a>
     </div>
 
 
@@ -13,25 +15,25 @@
 <!-- ADD ARIA LABELS FOR ARROWS -->
 
 
-<nav aria-label="Page navigation">
+<nav class="mt-3" aria-label="Page navigation">
     <ul class="pagination">
         
       
         {% if page_obj.has_previous %}
-        
+        <span class="mr-1"
         <li class="page-item">
         <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
         </a>
-    </li>
+    </li></span>
         {% endif %}
 
       
-        <span class="current"><li class="page-item"><a class="page-link" href="#">{{page_obj.number}}</a></li></span>
+        <span class="current mr-1"><li class="page-item"><a class="page-link" href="#">{{page_obj.number}}</a></li></span>
 
 
       {% if page_obj.has_next %}
-      <span class="current"><li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{page_obj.next_page_number}}</a></li></span>
+      <span class="current mr-1"><li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{page_obj.next_page_number}}</a></li></span>
       <li class="page-item">
         <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
@@ -40,6 +42,8 @@
       {% endif %}
     </ul>
   </nav>
+
+</div>
 
 
 {% endblock %}

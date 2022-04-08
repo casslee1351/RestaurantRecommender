@@ -4,18 +4,35 @@
 
 {% block content %} 
 {% if request.user.is_authenticated %}
-    <p>Welcome {{request.user}}!</p>
-    <div class="col-sm-6">
-        <div class="card" style="width: 18rem;">
-            <div class="card-header">
-            Top Picks
+    <div class="alert alert-primary ml-5 mb-5 mr-5" role="alert">Welcome {{request.user}}!</div>    
+{% endif %}
+    
+<div class="container ml-5">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card border-secondary" style="width: 34rem;">
+                <div class="card-header">
+                Featured
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item">F 1</li>
+                <li class="list-group-item">F 2</li>
+                <li class="list-group-item">F 3</li>
+                </ul>
             </div>
-            <ul class="list-group list-group-flush">
-            <li class="list-group-item">Pick 1</li>
-            <li class="list-group-item">Pick 2</li>
-            <li class="list-group-item">Pick 3</li>
-            </ul>
         </div>
+
+
+        <div class="col-sm-6">
+          <div class="card border-secondary text-center" style="height: 197px; width: 60rem;">
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        
+      </div>
     </div>
-    {% endif %}
 {% endblock %}
