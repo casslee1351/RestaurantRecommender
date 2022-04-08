@@ -49,6 +49,7 @@
 {% endfor %}
 
 <!-- ADD ARIA LABELS FOR ARROWS -->
+{% if user.isauthenticated %}
 <nav aria-label="Page navigation">
   <ul class="pagination">
       
@@ -78,5 +79,6 @@
 </nav>
 
 </div>
+{% endif %}
 
 {% endblock %}
