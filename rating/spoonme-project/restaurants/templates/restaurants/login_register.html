@@ -3,6 +3,7 @@
 {% block content %}
 
 {% if page == 'login' %}
+<!-- LOGIN FORM -->
 <div>
     <form method="POST" action="">
         {% csrf_token %}
@@ -20,6 +21,7 @@
    
 </div>
 {% else %}
+<!-- REGISTER FORM -->
 <div>
     <form method="POST" action="">
         {% csrf_token %}
