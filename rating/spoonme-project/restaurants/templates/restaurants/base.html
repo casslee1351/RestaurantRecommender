@@ -8,20 +8,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- BOOTSTRAP -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <!-- BOOTSTRAP -->
+        <!-- END BOOTSTRAP -->
         
 
 
         <title>{% block title %}Website Name{% endblock %}</title>
-
+        
+        <!-- SELECT2 -->
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <!-- END SELECT2 -->
         
 
         
 
     </head>
     <body>
-        <!-- TODO: ADD SEARCH BAR TO NAVBAR TO SEARCH FOR SPECIFIC RESTAURANTS -->
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark pt-3 pb-2 mb-4" style="background-color: #1d3557">
             <a class="navbar-brand ml-3" href="/">Website Name</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,7 +90,8 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<!-- BOOTSTRAP -->
+<!-- END BOOTSTRAP -->
+<!-- SCRIPT FOR JQUERY -- DROPDOWN LIST -->
         <script
         src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -100,5 +102,6 @@
                 $('#ddl').select2();
             });
         </script>
+<!-- END SCRIPT -->
     </body>
 </html>

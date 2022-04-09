@@ -66,7 +66,6 @@ def home(request):
 
 
 def restaurant(request, pk):
-    # want to add search bar so user can search for restaurants
 
     restaurant = Restaurant.objects.get(id=pk)
     context = {'restaurant': restaurant}
