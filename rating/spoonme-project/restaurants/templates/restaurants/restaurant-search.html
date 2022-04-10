@@ -3,9 +3,12 @@
 
 <!-- FIX PAGINATION TO SHOW MULTIPLE PAGE NUMBERS (ELIDED) -->
 {% block content %}
+<div class="alert alert-secondary ml-5 mb-5 mr-5" role="alert">
+    Search results for '{{search}}'
+</div>
 
 <div class="container">
-{% for restaurant in page_obj %}
+{% for restaurant in searched_restaurants %}
     <div class="list-group mt-3">
         <a class="list-group-item list-group-item-action list-group-item-light" href="{% url 'restaurant' restaurant.id %}">{{restaurant.name}}</a>
     </div>

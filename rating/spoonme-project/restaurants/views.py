@@ -73,17 +73,26 @@ def restaurant(request, pk):
 
 
 def restaurantList(request):
-    # want to add alphabetical option as well
+    # want to add alphabetical option
 
-    restaurants = Restaurant.objects.all()
-    # change to show more per page (about 20?)
-    paginator = Paginator(restaurants, 5)
+    if request.method == "POST":
+        search = request.POST['search']
+        searched_restaurants = Restaurant.objects.filter(
+            name__icontains=search)
 
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+        context = {'searched_restaurants': searched_restaurants,
+                   'search': search}
+        return render(request, "restaurants/restaurant-search.html", context)
+    else:
+        restaurants = Restaurant.objects.all()
+        # change to show more per page (about 20?)
+        paginator = Paginator(restaurants, 5)
 
-    context = {'restaurants': restaurants, 'page_obj': page_obj}
-    return render(request, "restaurants/restaurant-list.html", context)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        context = {'restaurants': restaurants, 'page_obj': page_obj}
+        return render(request, "restaurants/restaurant-list.html", context)
 
 
 @login_required(login_url="login")
