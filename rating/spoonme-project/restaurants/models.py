@@ -2,8 +2,6 @@ import decimal
 from django.db import models
 from django.contrib.auth.models import User
 
-# TODO: MAKEMIGRATIONS
-
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=100, null=False)
