@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class Restaurant(models.Model):
     name = models.CharField(max_length=100, null=False)
     type = models.CharField(max_length=50, null=True)
+    name_q = models.Charfield(max_length=50, null=True)
 
     class Meta:
         db_table = "restaurant"
