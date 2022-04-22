@@ -117,6 +117,7 @@ def userProfile(request, pk):
 
 @ login_required(login_url="login")
 def addRating(request):
+    # ADD LIMIT TO NUMBER OF RESULTS IN DDL
     form = RatingForm()
 
     if request.method == 'POST':
