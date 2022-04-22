@@ -16,9 +16,11 @@
     }
     #review {
         margin-top: 40px;
+        width: 65%;
     }
     #rating {
         margin-top: 20px;
+        accent-color: #1d3557;
     }
     #add-rating {
         margin-top: 10px;
@@ -26,27 +28,40 @@
     output {
         margin-left: 5px;
     }
+    .darkBlue {
+        background-color: #1d3557;
+        color: white;
+      }
+      .btn-lg:hover {
+        background-color: #457b9d;
+        color: white;
+      }
+    
 </style>
-        <form method="POST" action=""> 
-            {% csrf_token %}
+<form method="POST" action=""> 
+    {% csrf_token %}
+    <div class="container">
+        
+        <div class="form-group">
             <div>
-                
-                <div class="form-group">
-                    <div class="col-4">
-                        <div class="col">
-                            <label id="restaurant-label">{{form.restaurant.label}}</label>
-                            {{form.restaurant}}
-                            <label id="rating-label">{{form.rating.label}}</label>
-                            {{form.rating}}<output>5.0</output>
-                            {{form.review}}
+                <label id="restaurant-label">{{form.restaurant.label}}</label>
+                {{form.restaurant}}
 
-                            <input type="submit" id="add-rating" value="Submit" class="btn btn-primary"/>
-                        </div>
-                    </div>
-                </div>
-                
+                <label id="rating-label">{{form.rating.label}}</label>
+                {{form.rating}}<output>5.0</output>
             </div>
-        </form>
+        </div>
+
+        <div class="form-group">
+            {{form.review}}
+        </div>
+
+        <input type="submit" id="add-rating" value="Submit" class="btn darkBlue btn-lg"/>
+           
+        
+        
+    </div>
+</form>
 
 {% endblock %}
 
