@@ -1,34 +1,95 @@
-{% extends 'restaurants/base.html' %}
-<!-- FORM NEEDS STYLING -->
+<!DOCTYPE html>
+
+<html>
+    <head>
+    
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- BOOTSTRAP -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- END BOOTSTRAP -->
+    
+        <title>{% block title %}Login{% endblock %}</title>
+
+    </head>
+<body>
+
 {% block content %}
+
+
+<style type="text/css">
+    .darkBlue {
+        background-color: #1d3557;
+        color: white;
+      }
+    .btn:hover {
+        background-color: #457b9d;
+        color: white;
+      }
+    .container div {
+        margin: 0 auto;
+    }
+    .btn {
+        display: block;
+        margin-right: 629px;
+        margin-left: auto;
+    }
+    span {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .password, .username {
+        margin-top: 20px;
+    }
+    
+</style>
+
+<!-- NAVBAR -->
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark pt-3 pb-2 mb-4" style="background-color: #1d3557">
+    <a class="navbar-brand ml-3" href="/">Website Name</a>
+</nav>
 
 {% if page == 'login' %}
 <!-- LOGIN FORM -->
-<div>
+<div class="container">
+    <h1 class="display-4 text-center">Please Login</h1>
+    <hr class="my-4" size="10" color="#d3d3d3" noshade>
     <form method="POST" action="">
-        {% csrf_token %}
-        <label>Username: </label>
-        <input type="text" name="username" placeholder="Username..." />
-        
-        <label>Password: </label>
-        <input type="password" name="password" placeholder="Password..." />
+    {% csrf_token %}
+        <div class="form-group w-25">
+            <label class="username">Username </label>
+            <input class="form-control" type="text" name="username" placeholder="Username..." />
 
-        <p>Don't have an account? Create one <a href="{% url 'register' %}">here.</a></p>
-        <input class="btn btn-primary" type="submit" value="Login" />
+            <label class="password">Password </label>
+            <input class="form-control" type="password" name="password" placeholder="Password..." />
+        </div>
+
+        
+        <div class="form-group">
+            <input class="btn darkBlue mt-4" type="submit" value="Login" />
+        </div>
+
+        <span><small class="text-muted">Don't have an account? Create one <a href="{% url 'register' %}">here.</a></small></span>
+        
 
     </form>
+
+
+</div>
     
    
-</div>
 {% else %}
 <!-- REGISTER FORM -->
-<div>
+<!-- RESEARCH HOW TO STYLE USER CREATION FORM -->
+<div class="container">
+    
     <form method="POST" action="">
         {% csrf_token %}
         {{form.as_p}}
 
-        <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
-        <input class="btn btn-primary" type="submit" value="Register" />
+        <span><small class="text-muted">Already have an account? <a href="{% url 'login' %}">Login</a></small></span>
+        <input class="btn darkBlue mt-4" type="submit" value="Register" />
 
     </form>
     
@@ -37,3 +98,12 @@
 
 {% endif %}
 {% endblock %}
+
+<!-- BOOTSTRAP -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- END BOOTSTRAP -->
+
+</body>
+</html>
