@@ -86,10 +86,22 @@
     
     <form method="POST" action="">
         {% csrf_token %}
-        {{form.as_p}}
+        <div class="form-group w-25">
+            <label class="username">{{form.username.label}}</label>
+            {{form.username}}
+
+            <label class="password">{{form.password1.label}}</label>
+            {{form.password1}}
+
+            <label class="password">{{form.password2.label}}</label>
+            {{form.password2}}
+        </div>
 
         <span><small class="text-muted">Already have an account? <a href="{% url 'login' %}">Login</a></small></span>
-        <input class="btn darkBlue mt-4" type="submit" value="Register" />
+        
+        <div class="form-group">
+            <input class="btn darkBlue mt-4" type="submit" value="Register" />
+        </div>
 
     </form>
     

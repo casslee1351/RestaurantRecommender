@@ -1,6 +1,9 @@
 from attr import attrs
 from django import forms
 from django.forms import ModelForm
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
 from .models import Rating, Restaurant
 
 
@@ -16,3 +19,10 @@ class RatingForm(ModelForm):
     class Meta:
         model = Rating
         fields = ['restaurant', 'rating', 'review']
+
+
+# class RegisterForm(UserCreationForm):
+#     username =
+#     class Meta:
+#         model = User
+#         fields = '__all__'
