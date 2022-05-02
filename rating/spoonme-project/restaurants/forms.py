@@ -21,8 +21,14 @@ class RatingForm(ModelForm):
         fields = ['restaurant', 'rating', 'review']
 
 
-# class RegisterForm(UserCreationForm):
-#     username =
-#     class Meta:
-#         model = User
-#         fields = '__all__'
+class RegisterForm(UserCreationForm):
+    username = forms.CharField(max_length=15, min_length=2, required=True,
+                               widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
+    password1 = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Password'}))
+    password2 = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Confirm Password'}))
+
+    class Meta:
+        model = User
+        fields = ['username', 'password1', 'password2']

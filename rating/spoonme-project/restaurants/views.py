@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator
 
 from .models import Rating, Restaurant
-from .forms import RatingForm
+from .forms import RatingForm, RegisterForm
 
 
 def loginPage(request):
@@ -45,11 +45,11 @@ def logoutUser(request):
 
 def registerUser(request):
     #form = RegisterForm()
-    form = UserCreationForm(request.POST)
+    form = RegisterForm(request.POST)
 
     if request.method == "POST":
         # form = RegisterForm(request.POST)
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.username = user.username.lower()

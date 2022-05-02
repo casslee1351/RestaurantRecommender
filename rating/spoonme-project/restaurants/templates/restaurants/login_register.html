@@ -28,11 +28,13 @@
       }
     .container div {
         margin: 0 auto;
+        display: block;
     }
     .btn {
         display: block;
-        margin-right: 629px;
+        margin-right: 500px;
         margin-left: auto;
+        width: 100px;
     }
     span {
         display: block;
@@ -83,19 +85,35 @@
 <!-- REGISTER FORM -->
 <!-- RESEARCH HOW TO STYLE USER CREATION FORM -->
 <div class="container">
+    <h1 class="display-4 text-center">Register</h1>
+    <hr class="my-4" size="10" color="#d3d3d3" noshade>
     
     <form method="POST" action="">
         {% csrf_token %}
-        <div class="form-group w-25">
-            <label class="username">{{form.username.label}}</label>
-            {{form.username}}
-
-            <label class="password">{{form.password1.label}}</label>
-            {{form.password1}}
-
-            <label class="password">{{form.password2.label}}</label>
-            {{form.password2}}
+        <div class="form-row mt-5">
+            <div class="form-group w-50">
+                <div class="col-sm-10 mb-4 ml-5 mr-5">
+                    {{form.username}} 
+                </div>
+            </div>
         </div>
+
+        <div class="form-row">
+            <div class="form-group w-50">
+                <div class="col-sm-10 mb-4 ml-5 mr-5">
+                    {{form.password1}}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group w-50">
+                <div class="col-sm-10 mb-4 ml-5 mr-5">
+                    {{form.password2}}
+                </div>
+            </div>
+        </div>
+        
 
         <span><small class="text-muted">Already have an account? <a href="{% url 'login' %}">Login</a></small></span>
         
