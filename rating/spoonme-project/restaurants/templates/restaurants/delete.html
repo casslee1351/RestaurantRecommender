@@ -4,7 +4,7 @@
     
 <form method="POST" action="">
     {% csrf_token %}
-    <p>Are you sure you want to delete you {{rating.name}} rating?</p>
+    <p>Are you sure you want to delete your {{rating.restaurant}} review?</p>
     <a class="btn btn-secondary" href="{{request.META.HTTP_REFERER}}">Cancel</a>
     <input type="submit" value="confirm" class="btn btn-primary"/>
 
