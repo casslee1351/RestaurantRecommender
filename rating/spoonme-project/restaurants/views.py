@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator
 
+
 from .models import Rating, Restaurant
 from .forms import RatingForm, RegisterForm
 
