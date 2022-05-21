@@ -70,6 +70,7 @@ def home(request):
 def restaurant(request, pk):
 
     restaurant = Restaurant.objects.get(id=pk)
+
     context = {'restaurant': restaurant}
     return render(request, "restaurants/restaurant.html", context)
 
@@ -88,7 +89,7 @@ def restaurantList(request):
     else:
         restaurants = Restaurant.objects.all()
         # change to show more per page (about 20?)
-        paginator = Paginator(restaurants, 5)
+        paginator = Paginator(restaurants, 15)
 
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)

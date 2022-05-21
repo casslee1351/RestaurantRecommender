@@ -110,6 +110,18 @@
                 $('#ddl').select2();
             });
         </script>
+        
+        <script>
+            var myModal = new bootstrap.Modal(document.getElementById('myModal'), {})
+            myModal.show()
+        </script>
+    
+        <script type="text/javascript">
+            document.getElementById("modalClose").onclick = function () {
+                location.href = "{% url 'ratings'%}";
+            };
+        </script>
+    
 <!-- END SCRIPT -->
     </body>
 </html>
