@@ -171,3 +171,13 @@ def addRestaurant(request):
 
     context = {'form': form}
     return render(request, "restaurants/restaurant-form.html", context)
+
+def deleteRestaurant(request, pk):
+    restaurant = Restaurant.objects.get(id=pk)
+
+    if request.method == 'POST':
+        restaurant.delete()
+        return redirect('restaurants')
+
+    context = {'restaurant': restaurant}
+    return render(request, "retsaurants/delete-restaurant.html", context)
