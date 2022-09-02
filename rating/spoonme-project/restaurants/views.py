@@ -10,7 +10,7 @@ from django.core.paginator import Paginator
 
 
 from .models import Rating, Restaurant
-from .forms import RatingForm, RegisterForm
+from .forms import RatingForm, RegisterForm, RestaurantCreationForm
 
 
 def loginPage(request):
@@ -158,3 +158,16 @@ def deleteRating(request, pk):
         rating.delete()
         return redirect('ratings')
     return render(request, "restaurants/delete.html", {'rating': rating})
+
+def addRestaurant(request):
+    form = RestaurantCreationForm()
+
+    if request.method == 'POST':
+        form = RestaurantCreationForm(request.POST)
+        if form.is_valid():
+            name = form.save(commit=False)
+            name.save()
+            return redirect('addrestaurant')
+
+    context = {'form': form}
+    return render(request, "restaurants/restaurant-form.html", context)

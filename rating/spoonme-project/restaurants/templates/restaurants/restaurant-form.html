@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+    
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- BOOTSTRAP -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- END BOOTSTRAP -->
+    
+        <title>{% block title %}Add Restaurant{% endblock %}</title>
+
+    </head>
+
+<body>
+    {% block content %}
+    <!-- NAVBAR -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark pt-3 pb-2 mb-4" style="background-color: #1d3557">
+        <a class="navbar-brand ml-3" href="/">Website Name</a>
+    </nav>
+    <style type="text/css">
+        #tag-label {
+            margin-left: 30px;
+            margin-right: 5px
+        }
+        #restaurant-name {
+            margin-left: 30px;
+            margin-right: 5px;
+        }
+        #add-restaurant {
+            margin-top: 10px;
+        }
+        output {
+            margin-left: 5px;
+        }
+        .darkBlue {
+            background-color: #1d3557;
+            color: white;
+          }
+          .btn-lg:hover {
+            background-color: #457b9d;
+            color: white;
+          }
+        
+    </style>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+    <div class="container">
+        
+        <div class="form-group">
+            <div>
+
+                <label id="restaurant-name">{{form.name.label}}</label>
+                {{form.name}}
+
+                <label id="tag-label">{{form.tags.label}}</label>
+                {{form.tags}}
+            </div>
+
+        <input type="submit" id="add-restaurant" value="Submit" class="btn darkBlue btn-lg"/>
+
+        </div>
+    </form>
+
+
+    {% endblock %}
+</body>

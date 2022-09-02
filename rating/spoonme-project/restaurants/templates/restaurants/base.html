@@ -51,6 +51,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url 'ratings' %}">Your Reviews</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'addrestaurant' %}">Add Restaurant</a>
+                    </li>
                     {% endif %}
                 
                     <form class="form-inline mb-0 ml-5" action="{% url 'restaurants' %}" method="POST">
@@ -79,14 +82,14 @@
         
         </nav>
 
-        {% if messages %}
+        <!-- {% if messages %}
         <ul class="messages">
 
             {% for message in messages %}
             <li>{{message}}</li>
             {% endfor %}
         </ul>
-        {% endif %}
+        {% endif %} -->
 
         <div id="content", name="content">
 

@@ -31,3 +31,12 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'password1', 'password2']
+
+class RestaurantCreationForm(ModelForm):
+    name = forms.CharField(max_length=100)
+    tags = forms.CharField(max_length=50)
+
+    class Meta:
+        model = Restaurant
+        fields = '__all__'
+    pass
