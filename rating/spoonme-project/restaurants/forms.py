@@ -39,4 +39,3 @@ class RestaurantCreationForm(ModelForm):
     class Meta:
         model = Restaurant
         fields = '__all__'
-    pass

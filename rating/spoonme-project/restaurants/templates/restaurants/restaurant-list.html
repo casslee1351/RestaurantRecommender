@@ -7,8 +7,11 @@
 <div class="container">
 {% for restaurant in page_obj %}
     <div class="list-group mt-3">
-        <a class="list-group-item list-group-item-action list-group-item-light d-flex" href="{% url 'restaurant' restaurant.id %}">{{restaurant.name}}</a>
-        </div>
+        <a class="list-group-item list-group-item-action list-group-item-light d-flex" href="{% url 'restaurant' restaurant.id %}">{{restaurant.name}}
+
+        </a>
+        
+      </div>
 {% endfor %}
 <!-- ADD ARIA LABELS FOR ARROWS -->
 

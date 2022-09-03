@@ -32,9 +32,11 @@
               background-color: #457b9d;
               color: white;
             }
+          
           </style>
-        <nav class="navbar sticky-top navbar-expand-lg navbar-dark pt-3 pb-2 mb-4" style="background-color: #1d3557">
-            <a class="navbar-brand ml-3" href="/">Website Name</a>
+          <!-- pt-3 pb-2 mb-4 -->
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark mb-3" style="background-color: #1d3557">
+            <a class="navbar-brand" href="/">Website Name</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -51,9 +53,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url 'ratings' %}">Your Reviews</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'addrestaurant' %}">Add Restaurant</a>
-                    </li>
                     {% endif %}
                 
                     <form class="form-inline mb-0 ml-5" action="{% url 'restaurants' %}" method="POST">
@@ -69,10 +68,11 @@
                 <button class="btn darkBlue dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Account
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="text-align: center">
                 {% if request.user.is_authenticated %}
                   <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                   <a class="dropdown-item" href="{% url 'user-profile' user.id %}">Profile</a>
+                  <a class="drowdown-item" href="{% url 'manage-restaurants' %}">Manage Restaurants</a>
                 {% else %}
                   <a class="dropdown-item" href="{% url 'login' %}">Login</a>
                 {% endif %}
