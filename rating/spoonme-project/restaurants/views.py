@@ -7,16 +7,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 from .models import Rating, Restaurant
 from .forms import RatingForm, RegisterForm, RestaurantCreationForm
+from .decorators import unauthenticated_user
 
-
+@unauthenticated_user
 def loginPage(request):
     page = 'login'
-    if request.user.is_authenticated:
-        return redirect('home')
 
     if request.method == "POST":
         username = request.POST.get('username').lower()
@@ -43,7 +43,7 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
-
+@unauthenticated_user
 def registerUser(request):
     #form = RegisterForm()
     form = RegisterForm(request.POST)
@@ -172,5 +172,6 @@ def addRestaurant(request):
     context = {'form': form}
     return render(request, "restaurants/restaurant-form.html", context)
 
+@staff_member_required
 def manageRestaurants(request):
     return render(request, "restaurants/manage-restaurants.html", {})
