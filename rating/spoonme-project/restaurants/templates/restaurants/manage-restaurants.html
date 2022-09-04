@@ -1,7 +1,20 @@
 {% extends 'restaurants/base.html' %}
-{% block title%}TEST{%endblock%}
-{% block content %} 
-
-    <h1>TEST</h1>
+{% block title%}Manage Restaurants{%endblock%}
+{% block content %}
+<style>
+    .center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+        }
+</style>
+<div class="center">
+    <div class="btn-group-vertical">
+        <a class="btn darkBlue mb-2" href="{% url 'addrestaurant' %}">Add Restaurant</a>
+        <a class="btn darkBlue" href="{% url 'restaurants' %}">Go to Restaurant List</a>
+    </div>
+</div>
 
 {% endblock %}

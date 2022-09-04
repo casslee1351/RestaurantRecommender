@@ -7,7 +7,7 @@
       background-color: #1d3557;
       color: white;
     }
-    .btn-lg:hover {
+    .btn-lg .mr-3:hover {
       background-color: #457b9d;
       color: white;
     }
@@ -19,7 +19,9 @@
 </div>
 <!-- NUMBER OF RATINGS AND AVERAGE RATING -->
 
-<a class="btn darkBlue btn-lg mr-3" href="https://www.google.com/search?q={{restaurant.name}}">Google Search for {{restaurant.name}}</a>
+<a class="btn darkBlue btn-lg mr-3" href="https://www.google.com/search?q={{restaurant.name}}" target="_blank">Google Search for {{restaurant.name}}</a>
+{% if request.user.is_superuser %}
+<a class="btn btn-danger btn-lg" href="{% url 'delete-restaurant' restaurant.id %}">Delete</a>{% endif %}
 
 <!-- ADDRESS -->
 <!-- SHOW LIST OF REVIEWS -->

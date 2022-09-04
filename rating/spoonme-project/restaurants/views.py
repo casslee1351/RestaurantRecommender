@@ -92,8 +92,9 @@ def restaurantList(request):
         # change to show more per page (about 20?)
         paginator = Paginator(restaurants, 15)
 
-        page_number = request.GET.get('page')
+        page_number = request.GET.get('page', 1)
         page_obj = paginator.get_page(page_number)
+        page_obj.adjusted_elided_pages = paginator.get_elided_page_range(page_number, on_each_side=2)
 
         context = {'restaurants': restaurants, 'page_obj': page_obj}
         return render(request, "restaurants/restaurant-list.html", context)
@@ -175,3 +176,14 @@ def addRestaurant(request):
 @staff_member_required
 def manageRestaurants(request):
     return render(request, "restaurants/manage-restaurants.html", {})
+
+@staff_member_required
+def deleteRestaurant(request, pk):
+    restaurant = Restaurant.objects.get(id=pk)
+
+    if request.method == 'POST':
+        restaurant.delete()
+        return redirect('restaurants')
+    
+    context={'restaurant': restaurant}
+    return render(request, "restaurants/delete-restaurant.html", context)

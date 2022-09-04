@@ -3,9 +3,16 @@
 
 <!-- FIX PAGINATION TO SHOW MULTIPLE PAGE NUMBERS (ELIDED) -->
 {% block content %}
-<div class="alert alert-secondary ml-5 mb-5 mr-5" role="alert">
+<style>
+  .alert {
+    text-align: center;
+  }
+</style>
+{% if searched_restaurants %}
+<div class="alert alert-primary ml-5 mb-5 mr-5" role="alert">
     Search results for '{{search}}'
 </div>
+
 
 <div class="container">
 {% for restaurant in searched_restaurants %}
@@ -30,7 +37,14 @@
         {% endif %}
 
       
-        <span class="current mr-1"><li class="page-item"><a class="page-link" href="#">{{page_obj.number}}</a></li></span>
+        
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
 
 
       {% if page_obj.has_next %}
@@ -41,9 +55,16 @@
         </a>
       </li>
       {% endif %}
+
     </ul>
   </nav>
 
 </div>
+
+{% else %}
+<div class="alert alert-info ml-5 mb-5 mr-5" role="alert">
+  No results for '{{search}}'
+</div>
+{% endif %}
 
 {% endblock %}
