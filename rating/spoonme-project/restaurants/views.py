@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator
 from django.contrib.admin.views.decorators import staff_member_required
+from django.db.models import Avg, Count
 
 
 from .models import Rating, Restaurant
@@ -69,10 +70,18 @@ def home(request):
 
 
 def restaurant(request, pk):
-
     restaurant = Restaurant.objects.get(id=pk)
 
-    context = {'restaurant': restaurant}
+    try:
+        rating_count = Rating.objects.filter(restaurant__id=pk).count()
+        rating_sum = Rating.objects.annotate(Avg('rating')).filter(restaurant__id=pk)
+        context = {'restaurant': restaurant, 'ratingCount': rating_count, 'ratingSum': rating_sum[0].rating__avg}
+    except:
+        context = {'restaurant': restaurant}
+        redirect('restaurant/' + pk)
+        
+
+    
     return render(request, "restaurants/restaurant.html", context)
 
 
