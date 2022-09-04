@@ -16,6 +16,7 @@ urlpatterns = [
     path("manage-restaurants", views.manageRestaurants, name="manage-restaurants"),
     path("delete-restaurant/<str:pk>/", views.deleteRestaurant, name="delete-restaurant"),
     path("update-restaurant/<str:pk>/", views.updateRestaurant, name="update-restaurant"),
+     path("all-reviews/<str:pk>/", views.allReviews, name="all-reviews"),
 
     path("addrating/", views.addRating, name="addrating"),
     path("update-rating/<str:pk>/", views.updateRating, name="update-rating"),
