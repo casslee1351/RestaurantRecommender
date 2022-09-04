@@ -1,0 +1,38 @@
+{% extends 'restaurants/base.html' %}
+<!-- FORM NEEDS STYLING -->
+
+{% block title%}Add Rating{%endblock%}
+
+{% block content %} 
+
+
+<style type="text/css">
+    #restaurant-name {
+        margin-right: 5px
+    }
+    .darkBlue {
+        background-color: #1d3557;
+        color: white;
+      }
+      .btn-lg:hover {
+        background-color: #457b9d;
+        color: white;
+      }
+    
+</style>
+<form method="POST" action=""> 
+    {% csrf_token %}
+    <div class="container">
+        
+        <div class="form-group">
+            <div>
+
+                <label id="restaurant-name">{{form.name.label}}</label>
+                {{form.name}}
+
+            </div>
+        </div>
+
+
+        <input type="submit" id="add-rating" value="Submit" class="btn darkBlue btn-lg"/>
+{% endblock %}

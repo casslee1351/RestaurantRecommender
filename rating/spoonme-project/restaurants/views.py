@@ -11,7 +11,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 
 from .models import Rating, Restaurant
-from .forms import RatingForm, RegisterForm, RestaurantCreationForm
+from .forms import RatingForm, RegisterForm, RestaurantCreationForm, RestaurantUpdateForm
 from .decorators import unauthenticated_user
 
 @unauthenticated_user
@@ -187,3 +187,17 @@ def deleteRestaurant(request, pk):
     
     context={'restaurant': restaurant}
     return render(request, "restaurants/delete-restaurant.html", context)
+
+@ login_required(login_url="login")
+def updateRestaurant(request, pk):
+    restaurant = Restaurant.objects.get(id=pk)
+    form = RestaurantUpdateForm(instance=restaurant)
+
+    if request.method == 'POST':
+        form = RestaurantUpdateForm(request.POST, instance=restaurant)
+        if form.is_valid():
+            form.save()
+            return redirect('restaurants')
+
+    context = {'form': form}
+    return render(request, "restaurants/update-restaurant.html", context)

@@ -39,3 +39,10 @@ class RestaurantCreationForm(ModelForm):
     class Meta:
         model = Restaurant
         fields = '__all__'
+
+class RestaurantUpdateForm(ModelForm):
+    name = forms.CharField(max_length=100)
+
+    class Meta:
+        model = Restaurant
+        fields = ['name']
