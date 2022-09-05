@@ -45,4 +45,4 @@ class RestaurantUpdateForm(ModelForm):
 
     class Meta:
         model = Restaurant
-        fields = ['name']
+        fields = '__all__'

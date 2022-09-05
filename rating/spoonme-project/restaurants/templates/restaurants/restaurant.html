@@ -17,7 +17,7 @@
     .center {
             position: absolute;
             right: 73%;
-            background-color: rgb(207, 207, 207);
+            background-color: rgb(229, 229, 229);
             padding: 5px;
             border-radius: 25px;
         }
@@ -34,7 +34,9 @@
    
    
     <br>
-    
+    {% if restaurant.tags %}
+    <div class="d-flex justify-content-center"><h3><small class="text-muted">{{restaurant.tags}}</small></h3></div>
+    {% endif %}
     
 </div>
 <!-- NUMBER OF RATINGS AND AVERAGE RATING -->
@@ -45,6 +47,7 @@
 
 <!-- ADDRESS -->
 <!-- SHOW LIST OF REVIEWS -->
+{% if reviews %}
 <div class="center">
 
   <h1 class="display-4">Reviews {% if ratingCount %} ({{ratingCount}}){% endif %}</h1>
@@ -67,6 +70,7 @@
 {% endfor %}
 <a class="btn darkBlue mb-1" href="{% url 'all-reviews' restaurant.id %}">See all</a>
 </div>
+{% endif %}
  
 
 {% endblock %}
