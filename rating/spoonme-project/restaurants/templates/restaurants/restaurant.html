@@ -16,13 +16,22 @@
     }
     .center {
             position: absolute;
-            right: 75%;
+            right: 73%;
+            background-color: rgb(207, 207, 207);
+            padding: 5px;
+            border-radius: 25px;
         }
 </style>
 
 <!-- ADD STYLING TO RESTAURANT NAME -->
 <div>
-    <h1 class="display-4 text-center">{{restaurant.name}}--{{ratingAvg|floatformat:1}}</h1>
+    <h1 class="display-4 text-center">{{restaurant.name}}<a class="btn darkBlue btn-lg ml-3" href="https://www.google.com/search?q={{restaurant.name}}" target="_blank">Google</a>
+      {% if request.user.is_superuser %}
+<a class="btn btn-danger btn-lg" href="{% url 'delete-restaurant' restaurant.id %}">Delete</a>
+<a class="btn btn-secondary btn-lg" href="{% url 'update-restaurant' restaurant.id %}">Update</a>
+{% endif %}
+    </h1>
+   
    
     <br>
     
@@ -31,11 +40,8 @@
 <!-- NUMBER OF RATINGS AND AVERAGE RATING -->
 <div class="container">
 
-<a class="btn darkBlue btn-lg mr-3 ml-3" href="https://www.google.com/search?q={{restaurant.name}}" target="_blank">Google</a>
-{% if request.user.is_superuser %}
-<a class="btn btn-danger btn-lg" href="{% url 'delete-restaurant' restaurant.id %}">Delete</a>
-<a class="btn btn-secondary btn-lg" href="{% url 'update-restaurant' restaurant.id %}">Update</a>
-{% endif %}</div>
+
+</div>
 
 <!-- ADDRESS -->
 <!-- SHOW LIST OF REVIEWS -->
@@ -56,7 +62,7 @@
       <p class="card-text">{{review.review}}</p>
     </div>
   
-  <div class="card-footer text-muted">{{rating.updated}}</div>
+  <div class="text-muted">{{rating.updated}}</div>
 </div>
 {% endfor %}
 <a class="btn darkBlue mb-1" href="{% url 'all-reviews' restaurant.id %}">See all</a>
