@@ -196,7 +196,7 @@ def addRestaurant(request):
         if form.is_valid():
             name = form.save(commit=False)
             name.save()
-            return redirect('addrestaurant')
+            return redirect('restaurants')
 
     context = {'form': form}
     return render(request, "restaurants/restaurant-form.html", context)

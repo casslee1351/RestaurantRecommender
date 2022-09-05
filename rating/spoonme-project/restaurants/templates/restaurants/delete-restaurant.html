@@ -2,6 +2,8 @@
 {% block title%}Delete Restaurant{%endblock%}
 
 {% block content %}
+
+<!-- ADD MODEL FOR DELETE VIEW-->
 <p>Are you sure want to delete {{restaurant.name}}?</p>
 
 <form action="{% url 'delete-restaurant' restaurant.id %}" method="POST">
