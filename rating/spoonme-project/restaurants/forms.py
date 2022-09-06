@@ -13,7 +13,7 @@ class RatingForm(ModelForm):
     rating = forms.DecimalField(widget=forms.NumberInput(
         attrs={'class': 'form-group', 'type': 'range', 'id': 'rating', 'name': 'rating', 'step': '0.5', 'min': '1', 'max': '10', "value": "5.0",  "oninput": "this.nextElementSibling.value = this.value"}))
     review = forms.CharField(widget=forms.Textarea(
-        attrs={'class': 'form-control', 'id': 'review', 'rows': '5', 'placeholder': "Write your review..."}))
+        attrs={'class': 'form-control', 'id': 'review', 'rows': '5', 'placeholder': "Write your review..."}), required=False)
 
     class Meta:
         model = Rating
@@ -23,9 +23,9 @@ class RatingForm(ModelForm):
 class RegisterForm(UserCreationForm):
     username = forms.CharField(max_length=15, min_length=2, required=True,
                                widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
-    password1 = forms.CharField(widget=forms.TextInput(
+    password1 = forms.CharField(widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'Password'}))
-    password2 = forms.CharField(widget=forms.TextInput(
+    password2 = forms.CharField(widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'Confirm Password'}))
 
     class Meta:

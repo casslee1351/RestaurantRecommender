@@ -3,8 +3,16 @@
 {% block title%}Home{%endblock%}
 
 {% block content %} 
+<style>
+  #reviewButton{
+    margin:20px;
+  }
+</style>
 {% if request.user.is_authenticated %}
-    <div class="alert alert-primary ml-5 mb-5 mr-5" role="alert">Welcome {{request.user}}!</div>    
+    <div class="alert alert-primary ml-5 mb-5 mr-5" role="alert">
+      Welcome {{request.user}}!
+    </div>
+    
 {% endif %}
     
 <div class="container ml-5">
@@ -26,13 +34,17 @@
         <div class="col-sm-6">
           <div class="card border-secondary text-center" style="height: 197px;">
             <div class="card-body">
-              <h5 class="card-title">Recommendations will go here for ON-DEMAND</h5>
-              <p class="card-text">Recommendations at the Push of a Button!</p>
-              <a href="#" class="btn btn-primary">Run Script</a>
+              <h5 class="card-title">Title Card</h5>
+              <p class="card-text">Need something to put here</p>
+              <a href="#" class="btn darkBlue">Push Me</a>
             </div>
           </div>
         </div>
         
       </div>
+    </div>
+
+    <div class="text-center" id="reviewButton">
+      <a class="btn darkBlue btn-lg" href="{% url 'addrating' %}">Add New Review</a>
     </div>
 {% endblock %}

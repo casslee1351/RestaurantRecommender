@@ -116,7 +116,7 @@ def restaurantList(request):
                    'search': search}
         return render(request, "restaurants/restaurant-search.html", context)
     else:
-        restaurants = Restaurant.objects.all()
+        restaurants = Restaurant.objects.all().order_by('name')
         paginator = Paginator(restaurants, 15)
 
         page_number = request.GET.get('page', 1)
@@ -133,13 +133,13 @@ def ratings(request):
     ratings = Rating.objects.filter(user=user)
 
 
-    paginator_ = Paginator(ratings, 5)
+    paginator = Paginator(ratings, 5)
 
-    page_number_ = request.GET.get('page', 1)
-    page_obj_ = paginator_.get_page(page_number_)
-    page_obj_.adjusted_elided_pages = paginator_.get_elided_page_range(page_number_, on_each_side=2)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+    page_obj.adjusted_elided_pages = paginator.get_elided_page_range(page_number, on_each_side=2)
 
-    context = {'ratings': ratings, 'user': user, 'page_obj': page_obj_}
+    context = {'ratings': ratings, 'user': user, 'page_obj': page_obj}
     return render(request, "restaurants/ratings.html", context)
 
 
@@ -228,6 +228,8 @@ def updateRestaurant(request, pk):
     if request.method == 'POST':
         form = RestaurantUpdateForm(request.POST, instance=restaurant)
         if form.is_valid():
+            restaurant.name = request.POST['name']
+            restaurant.tags = request.POST['tags']
             form.save()
             return redirect('restaurants')
 

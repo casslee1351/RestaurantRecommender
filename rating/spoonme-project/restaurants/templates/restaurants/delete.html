@@ -3,17 +3,6 @@
 
 {% block content %}
 
-<style type="text/css">
-    .darkBlue {
-        background-color: #1d3557;
-        color: white;
-      }
-    .btn:hover {
-        background-color: #457b9d;
-        color: white;
-      }
-</style>
-
 <div class="modal fade" id="myModal" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -27,7 +16,7 @@
                     {% csrf_token %}
                     <p>Are you sure you want to delete your {{rating.restaurant}} review?</p>
                     <a class="btn btn-secondary" href="{{request.META.HTTP_REFERER}}">Cancel</a>
-                    <input type="submit" value="Delete" class="btn darkBlue"/>
+                    <input type="submit" value="Delete" class="btn btn-danger"/>
                 </form>
             </div>
         </div>
