@@ -172,6 +172,8 @@ def updateRating(request, pk):
     if request.method == 'POST':
         form = RatingForm(request.POST, instance=rating)
         if form.is_valid():
+            rating.rating = request.POST['rating']
+            rating.review = request.POST['review']
             form.save()
             return redirect('ratings')
 
