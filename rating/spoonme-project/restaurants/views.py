@@ -132,6 +132,8 @@ def restaurantList(request):
 def ratings(request):
     user = request.user
     ratings = Rating.objects.filter(user=user).order_by('-updated')
+
+    
     paginator = Paginator(ratings, 5)
 
     page_number = request.GET.get('page')
