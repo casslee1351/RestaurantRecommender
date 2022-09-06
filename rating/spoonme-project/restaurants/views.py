@@ -117,7 +117,6 @@ def restaurantList(request):
         return render(request, "restaurants/restaurant-search.html", context)
     else:
         restaurants = Restaurant.objects.all()
-        # change to show more per page (about 20?)
         paginator = Paginator(restaurants, 15)
 
         page_number = request.GET.get('page', 1)
@@ -131,15 +130,16 @@ def restaurantList(request):
 @login_required(login_url="login")
 def ratings(request):
     user = request.user
-    ratings = Rating.objects.filter(user=user).order_by('-updated')
+    ratings = Rating.objects.filter(user=user)
 
-    
-    paginator = Paginator(ratings, 5)
 
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    paginator_ = Paginator(ratings, 5)
 
-    context = {'ratings': ratings, 'user': user, 'page_obj': page_obj}
+    page_number_ = request.GET.get('page', 1)
+    page_obj_ = paginator_.get_page(page_number_)
+    page_obj_.adjusted_elided_pages = paginator_.get_elided_page_range(page_number_, on_each_side=2)
+
+    context = {'ratings': ratings, 'user': user, 'page_obj': page_obj_}
     return render(request, "restaurants/ratings.html", context)
 
 

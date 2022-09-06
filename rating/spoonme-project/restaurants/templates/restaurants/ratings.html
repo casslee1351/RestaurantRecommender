@@ -12,6 +12,22 @@
     background-color: #457b9d;
     color: white;
   }
+  .page-item [href] {
+    color: rgb(60, 59, 59);
+  }
+
+  .page-link {
+    border-color: #747373;
+  }
+
+  .page-link:hover {
+                background-color: #457b9d;
+                color: white;
+            }
+
+  #activeItem {
+    background-color: #1d3557;
+  }
 </style>
 
 
@@ -50,37 +66,36 @@
 {% endfor %}
 
 <!-- ADD ARIA LABELS FOR ARROWS -->
-{% if user.isauthenticated %}
-<nav aria-label="Page navigation">
-  <ul class="pagination">
-      
-    
-      {% if page_obj.has_previous %}
-      
-      <li class="page-item">
-      <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-  </li>
-      {% endif %}
 
-    
-      <span class="current"><li class="page-item"><a class="page-link" href="#">{{page_obj.number}}</a></li></span>
-
-
-    {% if page_obj.has_next %}
-    <span class="current"><li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{page_obj.next_page_number}}</a></li></span>
-    <li class="page-item">
-      <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
+<nav class="mt-3" aria-label="Page navigation">
+  <ul class="pagination justify-content-center flex-wrap mt-2 mb-4">
+    {% if page_obj.has_previous %}
+        <li class="page-item mr-1"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+        <li class="page-item mr-1"><a class="page-link">&laquo;</a></li>
     {% endif %}
-  </ul>
+    {% for i in page_obj.adjusted_elided_pages|default_if_none:page_obj.paginator.get_elided_page_range %}
+        {% if page_obj.number == i %}
+            <li class="active page-item mr-1"><span class="page-link" id="activeItem">{{ i }} <span class="sr-only">(current)</span></span>
+            </li>
+        {% else %}
+            {% if i == page_obj.paginator.ELLIPSIS %}
+                <li class="page-item mr-1"><a class="page-link">{{ i }}</a></li>
+            {% else %}
+                <li class="page-item mr-1"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+        <li class="page-item mr-1"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+        <li class="page-item mr-1"><a class="page-link">&raquo;</a></li>
+    {% endif %}
+  </ul>     
 </nav>
+    
 
 </div>
-{% endif %}
 
 
 {% endblock %}
