@@ -9,11 +9,13 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator
 from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Avg, Count, Sum
-
+from rest_framework import viewsets
+from rest_framework.decorators import api_view
 
 from .models import Rating, Restaurant
 from .forms import RatingForm, RegisterForm, RestaurantCreationForm, RestaurantUpdateForm
 from .decorators import unauthenticated_user
+from .serializers import recSerializers
 
 @unauthenticated_user
 def loginPage(request):
@@ -39,7 +41,6 @@ def loginPage(request):
     context = {'page': page}
     return render(request, "restaurants/login_register.html", context)
 
-
 def logoutUser(request):
     logout(request)
     return redirect('login')
@@ -64,10 +65,9 @@ def registerUser(request):
     context = {'form': form}
     return render(request, "restaurants/login_register.html", context)
 
-
 def home(request):
-    return render(request, "restaurants/home.html", {})
-
+    context={}
+    return render(request, "restaurants/home.html", context)
 
 def restaurant(request, pk):
     restaurant = Restaurant.objects.get(id=pk)
