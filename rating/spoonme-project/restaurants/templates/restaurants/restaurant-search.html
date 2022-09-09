@@ -7,18 +7,24 @@
   .alert {
     text-align: center;
   }
+  .list-group-item:hover {
+    background-color: #457b9d;
+    color: white;
+  }
 </style>
 {% if searched_restaurants %}
-<div class="alert alert-primary ml-5 mb-5 mr-5" role="alert">
+<div class="d-flex justify-content-center">
+<div class="alert alert-primary ml-5 mb-5 mr-5 w-75" role="alert">
     Search results for '{{search}}'
-</div>
+</div></div>
 
 
 <div class="container">
 {% for restaurant in searched_restaurants %}
-    <div class="list-group mt-3">
-        <a class="list-group-item list-group-item-action list-group-item-light" href="{% url 'restaurant' restaurant.id %}">{{restaurant.name}}</a>
-    </div>
+<div class="d-flex justify-content-center">
+    <div class="list-group mt-3 w-75">
+        <a class="list-group-item list-group-item-action" href="{% url 'restaurant' restaurant.id %}">{{restaurant.name}}</a>
+    </div></div>
 {% endfor %}
 <!-- ADD ARIA LABELS FOR ARROWS -->
 
