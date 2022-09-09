@@ -9,11 +9,15 @@
   }
 </style>
 {% if request.user.is_authenticated %}
-    <div class="alert alert-primary ml-5 mb-5 mr-5" role="alert">
+    <div class="alert alert-primary ml-5 mr-5" role="alert">
       Welcome {{request.user}}!
     </div>
     
 {% endif %}
+
+<div class="text-center" id="reviewButton">
+  <a class="btn darkBlue btn-lg" href="{% url 'addrating' %}">Add New Review</a>
+</div>
     
 <div class="container ml-5">
     <div class="row">
@@ -46,7 +50,5 @@
       </div>
     </div>
 
-    <div class="text-center" id="reviewButton">
-      <a class="btn darkBlue btn-lg" href="{% url 'addrating' %}">Add New Review</a>
-    </div>
+    
 {% endblock %}
