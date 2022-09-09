@@ -34,7 +34,7 @@ class RegisterForm(UserCreationForm):
 
 class RestaurantCreationForm(ModelForm):
     name = forms.CharField(max_length=100)
-    tags = forms.CharField(max_length=50)
+    tags = forms.CharField(max_length=50, required=False)
 
     class Meta:
         model = Restaurant
@@ -42,6 +42,7 @@ class RestaurantCreationForm(ModelForm):
 
 class RestaurantUpdateForm(ModelForm):
     name = forms.CharField(max_length=100)
+    tags = forms.CharField(max_length=50, required=False)
 
     class Meta:
         model = Restaurant

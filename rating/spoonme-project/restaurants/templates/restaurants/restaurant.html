@@ -25,8 +25,10 @@
 
 <!-- ADD STYLING TO RESTAURANT NAME -->
 <div>
-    <h1 class="display-4 text-center">{{restaurant.name}}<a class="btn darkBlue btn-lg ml-3" href="https://www.google.com/search?q={{restaurant.name}}" target="_blank">Google</a>
+    <!--NEED TO ACCOUNT FOR NAMES WITH CHARACTERS-->
+    <h1 class="display-4 text-center">{{restaurant.name}}<!--<a class="btn darkBlue btn-lg ml-3" href="https://www.google.com/search?q={{restaurant.name}}" target="_blank">Google</a>-->
       {% if request.user.is_superuser %}
+      <a class="btn darkBlue btn-lg ml-3" href="https://www.google.com/search?q={{restaurant.name}}" target="_blank">Google</a>
 <a class="btn btn-danger btn-lg" href="{% url 'delete-restaurant' restaurant.id %}">Delete</a>
 <a class="btn btn-secondary btn-lg" href="{% url 'update-restaurant' restaurant.id %}">Update</a>
 {% endif %}

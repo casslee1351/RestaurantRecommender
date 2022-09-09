@@ -30,14 +30,14 @@ class Rating(models.Model):
     def __str__(self):
         return self.restaurant, str(self.rating), self.user.id
 
-class Recommendations(models.Model):
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, null=False)
-    restaurant = models.ForeignKey(
-        Restaurant, on_delete=models.CASCADE, null=False)
+# class Recommendations(models.Model):
+#     user = models.ForeignKey(
+#         User, on_delete=models.CASCADE, null=False)
+#     restaurant = models.ForeignKey(
+#         Restaurant, on_delete=models.CASCADE, null=False)
 
-    class Meta:
-        db_table = "recommendations"
+#     class Meta:
+#         db_table = "recommendations"
 
-    def __str__(self):
-        return self.restaurant.name, self.user.id
+#     def __str__(self):
+#         return self.restaurant.name, self.user.id
