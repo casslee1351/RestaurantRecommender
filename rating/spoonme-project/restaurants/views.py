@@ -8,12 +8,14 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator
 from django.contrib.admin.views.decorators import staff_member_required
-from django.db.models import Avg, Count, Sum
+from django.db.models import Avg
+import joblib
 
 from .models import Rating, Restaurant
 from .forms import RatingForm, RegisterForm, RestaurantCreationForm, RestaurantUpdateForm
 from .decorators import unauthenticated_user
 
+### ADD RECOMMENDATION TO BUTTON --> FILTER FOR USERS WITH RATINGS-- APPEAR IN MODAL?
 
 @unauthenticated_user
 def loginPage(request):
@@ -45,11 +47,9 @@ def logoutUser(request):
 
 @unauthenticated_user
 def registerUser(request):
-    #form = RegisterForm()
     form = RegisterForm(request.POST)
 
     if request.method == "POST":
-        # form = RegisterForm(request.POST)
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
@@ -64,7 +64,8 @@ def registerUser(request):
     return render(request, "restaurants/login_register.html", context)
 
 def home(request):
-    context={}
+    ratings = Rating.objects.filter(user=request.user)
+    context={'ratings': ratings}
     return render(request, "restaurants/home.html", context)
 
 def restaurant(request, pk):
@@ -74,7 +75,6 @@ def restaurant(request, pk):
         reviews = Rating.objects.filter(restaurant__id=pk)
         rating_count = Rating.objects.filter(restaurant__id=pk).count()
         rating_avg = Rating.objects.filter(restaurant__id=pk).aggregate(Avg('rating'))['rating__avg']
-
 
         context = {'restaurant': restaurant, 'ratingCount': rating_count, 'ratingAvg': rating_avg, 'reviews':reviews}
     except:
@@ -103,8 +103,6 @@ def allReviews(request, pk):
 
 
 def restaurantList(request):
-    # want to add alphabetical option
-
     if request.method == "POST":
         search = request.POST['search']
         searched_restaurants = Restaurant.objects.filter(
@@ -130,7 +128,6 @@ def ratings(request):
     user = request.user
     ratings = Rating.objects.filter(user=user)
 
-
     paginator = Paginator(ratings, 5)
 
     page_number = request.GET.get('page', 1)
@@ -147,7 +144,6 @@ def userProfile(request, pk):
     context = {'user': user, 'ratings': ratings}
     return render(request, "restaurants/profile.html", context)
 
-
 @ login_required(login_url="login")
 def addRating(request):
     form = RatingForm()
@@ -158,7 +154,7 @@ def addRating(request):
             user_rating = form.save(commit=False)
             user_rating.user = request.user
             user_rating.save()
-            return redirect('ratings')
+            return redirect('addrating')
 
     context = {'form': form}
     return render(request, "restaurants/rating-form.html", context)
@@ -179,7 +175,6 @@ def updateRating(request, pk):
 
     context = {'form': form}
     return render(request, "restaurants/rating-form.html", context)
-
 
 @ login_required(login_url="login")
 def deleteRating(request, pk):

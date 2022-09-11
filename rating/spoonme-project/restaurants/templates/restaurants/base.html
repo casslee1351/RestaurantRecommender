@@ -63,6 +63,10 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url 'restaurants' %}">Restaurants</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'addrating' %}">Add a Review</a>
+                    </li>
                     
                     {% if request.user.is_authenticated %}
                     <li class="nav-item">
