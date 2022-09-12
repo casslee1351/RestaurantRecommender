@@ -52,6 +52,16 @@
     <a class="navbar-brand ml-3" href="/">Website Name</a>
 </nav>
 
+{% if messages %}
+        <div class="messages">
+
+            {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">{{message}}
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
 {% if page == 'login' %}
 <!-- LOGIN FORM -->
 <div class="container">
@@ -126,15 +136,8 @@
 </div>
 
 {% endif %}
+<!-- {% if form.errors %}<p> error </p>{% endif %} -->
 
-{% if messages %}
-        <ul class="messages">
-
-            {% for message in messages %}
-            <li>{{message}}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
 {% endblock %}
 
 <!-- BOOTSTRAP -->

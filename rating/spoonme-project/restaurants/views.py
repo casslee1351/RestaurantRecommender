@@ -49,6 +49,10 @@ def logoutUser(request):
 def registerUser(request):
     form = RegisterForm(request.POST)
 
+    # Need to check for if username exists
+    # Add check for matching passwords\
+    # Does this already exist in the UserCreationForm?
+
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -58,7 +62,7 @@ def registerUser(request):
             login(request, user)
             return redirect('home')
         else:
-            messages.error(request, "An error occurred.")
+            messages.error(request, "Passwords do not match.")
 
     context = {'form': form}
     return render(request, "restaurants/login_register.html", context)
@@ -127,6 +131,7 @@ def restaurantList(request):
 def ratings(request):
     user = request.user
     ratings = Rating.objects.filter(user=user)
+    rating_count = Rating.objects.filter(user=user).count()
 
     paginator = Paginator(ratings, 5)
 
@@ -134,7 +139,7 @@ def ratings(request):
     page_obj = paginator.get_page(page_number)
     page_obj.adjusted_elided_pages = paginator.get_elided_page_range(page_number, on_each_side=2)
 
-    context = {'ratings': ratings, 'user': user, 'page_obj': page_obj}
+    context = {'ratings': ratings, 'user': user, 'page_obj': page_obj, 'ratingCount': rating_count}
     return render(request, "restaurants/ratings.html", context)
 
 
@@ -193,7 +198,7 @@ def addRestaurant(request):
         if form.is_valid():
             name = form.save(commit=False)
             name.save()
-            return redirect('restaurants')
+            return redirect('addrestaurant')
 
     context = {'form': form}
     return render(request, "restaurants/restaurant-form.html", context)
