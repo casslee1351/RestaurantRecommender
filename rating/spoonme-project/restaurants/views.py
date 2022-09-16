@@ -35,8 +35,6 @@ def loginPage(request):
         if user is not None:
             login(request, user)
             return redirect('/')
-        else:
-            messages.error(request, "Username or password does not exist.")
 
     context = {'page': page}
     return render(request, "restaurants/login_register.html", context)
@@ -47,11 +45,11 @@ def logoutUser(request):
 
 @unauthenticated_user
 def registerUser(request):
-    form = RegisterForm(request.POST)
+    form = RegisterForm()
 
     # Need to check for if username exists
     # Add check for matching passwords\
-    # Does this already exist in the UserCreationForm?
+    # Does this already exist in the UserCreationForm? might just use UserCreationForm?
 
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -61,8 +59,6 @@ def registerUser(request):
             user.save()
             login(request, user)
             return redirect('home')
-        else:
-            messages.error(request, "Passwords do not match.")
 
     context = {'form': form}
     return render(request, "restaurants/login_register.html", context)
