@@ -44,6 +44,9 @@
     .password, .username {
         margin-top: 20px;
     }
+    .alert {
+        text-align: center;
+    }
     
 </style>
 
@@ -52,15 +55,17 @@
     <a class="navbar-brand ml-3" href="/">Website Name</a>
 </nav>
 
+
+
 {% if messages %}
         <div class="messages">
 
             {% for message in messages %}
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">{{message}}
+            <div class="alert alert-danger ml-5 mr-5" role="alert">{{message}}
             </div>
             {% endfor %}
         </div>
-    {% endif %}
+{% endif %}
 
 {% if page == 'login' %}
 <!-- LOGIN FORM -->

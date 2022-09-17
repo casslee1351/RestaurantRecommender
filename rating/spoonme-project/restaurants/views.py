@@ -47,18 +47,23 @@ def logoutUser(request):
 def registerUser(request):
     form = RegisterForm()
 
-    # Need to check for if username exists
-    # Add check for matching passwords\
-    # Does this already exist in the UserCreationForm? might just use UserCreationForm?
-
     if request.method == "POST":
         form = RegisterForm(request.POST)
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
         if form.is_valid():
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
             login(request, user)
             return redirect('home')
+        elif password1 != password2:
+            messages.error(request, "Passwords do not match. Please try again.")
+        else:
+            username = request.POST.get('username')
+            username_count = User.objects.filter(username=username).count()
+            if username_count > 0:
+                messages.error(request, "Username already exists. Please choose a different one.")
 
     context = {'form': form}
     return render(request, "restaurants/login_register.html", context)
