@@ -29,3 +29,12 @@ class Rating(models.Model):
 
     def __str__(self):
         return self.restaurant, str(self.rating), self.user.id
+
+# add lunch buddy groups to user profile
+# user will need to create group and add users
+class LunchBuddies(models.Model):
+    name = models.CharField(max_length=200)
+    participants = models.ManyToManyField(User, related_name='participants')
+
+    def __str__(self):
+        return self.name
