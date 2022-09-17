@@ -32,6 +32,7 @@ class Rating(models.Model):
 
 # add lunch buddy groups to user profile
 # user will need to create group and add users
+# watch tutorial for room creation and user addition
 class LunchBuddies(models.Model):
     name = models.CharField(max_length=200)
     participants = models.ManyToManyField(User, related_name='participants')
