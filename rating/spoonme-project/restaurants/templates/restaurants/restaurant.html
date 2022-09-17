@@ -1,6 +1,5 @@
 {% extends 'restaurants/base.html' %}
-<!-- THIS PAGE NEEDS STYLING -->
-<!-- ADD MORE RESTAURANT CONTENT ? -->
+
 {% block content %}
 <style>
   .badge{
@@ -29,19 +28,17 @@
 </style>
 
 <div>
-    <!--NEED TO ACCOUNT FOR NAMES WITH CHARACTERS-->
     <h1 class="display-4 text-center">{{restaurant.name}}<!--<a class="btn darkBlue btn-lg ml-3" href="https://www.google.com/search?q={{restaurant.name}}" target="_blank">Google</a>-->
       {% if reviews %}
       <span class="badge rounded-pill">{{ratingAvg}}&#9733;</span>
       {% endif %}
+
+      <!--ADD ADDRESS FROM SCRAPING?-->
       {% if request.user.is_superuser %}
-      <a class="btn darkBlue btn-lg ml-3" href="https://www.google.com/search?q={{restaurant.name}}" target="_blank">Google</a>
       <a class="btn btn-danger btn-lg" href="{% url 'delete-restaurant' restaurant.id %}">Delete</a>
       <a class="btn btn-secondary btn-lg" href="{% url 'update-restaurant' restaurant.id %}">Update</a>
       {% endif %}
     </h1>
-   
-   
     <br>
     <div class="d-flex justify-content-center">
       {% if restaurant.tags %}
@@ -49,8 +46,7 @@
       {% endif %}
       <a class="btn darkBlue btn-lg mb-1" href="{% url 'addrating' %}">Add a Review</a>
     </div>
-    
-    
+      
 </div>
 
 <!-- ADDRESS -->
@@ -69,10 +65,10 @@
       <h5 class="card-title">{{review.rating}} /10</h5>
       <p class="card-text">{{review.review}}</p>
     </div>
-  
   <div class="text-muted">{{rating.updated}}</div>
 </div>
 {% endfor %}
+
 <a class="btn darkBlue mb-1" href="{% url 'all-reviews' restaurant.id %}">See all</a>
 </div>
 {% endif %}
