@@ -2,10 +2,11 @@ import decimal
 from django.db import models
 from django.contrib.auth.models import User
 
-
+### ADD LOCAL HIGHLIGHT SECTION : EXAMPLE --> SOJOURNER'S COFFEE HOUSE SUPPORTS LOCAL MILITARY VETERANS
 class Restaurant(models.Model):
     name = models.CharField(max_length=100, null=False)
     tags = models.CharField(max_length=50, null=True)
+    local_highlight = models.CharField(max_length=500, null=True)
 
     class Meta:
         db_table = "restaurant"
