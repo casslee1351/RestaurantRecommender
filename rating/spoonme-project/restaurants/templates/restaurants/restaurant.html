@@ -37,6 +37,7 @@
       {% if request.user.is_superuser %}
       <a class="btn btn-danger btn-lg" href="{% url 'delete-restaurant' restaurant.id %}">Delete</a>
       <a class="btn btn-secondary btn-lg" href="{% url 'update-restaurant' restaurant.id %}">Update</a>
+      <a class="btn darkBlue btn-lg mb-1" href="{% url 'addrating' %}">Add a Review</a>
       {% endif %}
     </h1>
     <br>
@@ -44,7 +45,6 @@
       {% if restaurant.tags %}
       <h3><small class="text-muted">{{restaurant.tags}}</small></h3>
       {% endif %}
-      <a class="btn darkBlue btn-lg mb-1" href="{% url 'addrating' %}">Add a Review</a>
     </div>
       
 </div>
