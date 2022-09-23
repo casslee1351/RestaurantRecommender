@@ -229,6 +229,7 @@ def updateRestaurant(request, pk):
         if form.is_valid():
             restaurant.name = request.POST['name']
             restaurant.tags = request.POST['tags']
+            restaurant.local_highlight = request.POST['local_highlight']
             form.save()
             return redirect('restaurants')
 

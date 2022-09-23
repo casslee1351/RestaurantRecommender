@@ -49,8 +49,7 @@
       
 </div>
 
-<!-- ADDRESS -->
-<!-- SHOW LIST OF REVIEWS -->
+<!-- ADD ADDRESS? -->
 {% if reviews %}
 <div class="left-section">
 
@@ -72,6 +71,17 @@
 <a class="btn darkBlue mb-1" href="{% url 'all-reviews' restaurant.id %}">See all</a>
 </div>
 {% endif %}
+<!-- NEEDS STYLING : ABOUT SECTION -->
+{% if restaurant.local_highlight %}
+<div class="col-sm-6" id="similar-restaurants">
+  <div class="card border-secondary">
+      <div class="card-header">
+      About
+      </div>
+      {{restaurant.local_highlight}}
+  </div>
+</div>
+{% endif %}
 
 <!--Add card to display similar restaurants --> 
 <div class="col-sm-6" id="similar-restaurants">
@@ -86,5 +96,8 @@
       </ul>
   </div>
 </div>
+
+
+
 
 {% endblock %}
