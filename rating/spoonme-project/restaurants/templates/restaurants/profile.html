@@ -5,7 +5,7 @@
 {% block content %} 
 
 <!--NEEDS TO BE UPDATED TO INCLUDE LINK TO MY RATINGS, RECS, AND LUNCH BUDDIES-->
-
+<!-- ADD NUMBER OF REVIEWS, DISPLAY TOP 3 RATED / MOST RECENT? -->
 <table class="table table-striped table-sm" style="width:500px;">
     <thead class="thead-light">
       <tr>
@@ -31,7 +31,7 @@
       {% endfor %}
     </tbody>
 
-    <h1><a href="{% url 'addrating' %}">Add Review</a></h1>
+    <h1><a class="btn darkBlue btn-lg" href="{% url 'addrating' %}">Add Review</a></h1>
     
   </table>
 {% endblock %}
