@@ -143,10 +143,12 @@ def ratings(request):
     context = {'ratings': ratings, 'user': user, 'page_obj': page_obj, 'ratingCount': rating_count}
     return render(request, "restaurants/ratings.html", context)
 
-
+@ login_required(login_url="login")
 def userProfile(request, pk):
     user = User.objects.get(id=pk)
     ratings = Rating.objects.filter(user=pk)
+    # Add count -- display by sorted?
+
     context = {'user': user, 'ratings': ratings}
     return render(request, "restaurants/profile.html", context)
 
