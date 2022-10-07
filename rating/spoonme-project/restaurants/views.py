@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator
 from django.contrib.admin.views.decorators import staff_member_required
-from django.db.models import Avg
+from django.db.models import Avg, Max, Min
 import joblib
 
 from .models import Rating, Restaurant
@@ -147,9 +147,12 @@ def ratings(request):
 def userProfile(request, pk):
     user = User.objects.get(id=pk)
     ratings = Rating.objects.filter(user=pk)
-    # Add count -- display by sorted?
+    rating_count = Rating.objects.filter(user=pk).count()
+    rating_avg = Rating.objects.filter(user=pk).aggregate(Avg('rating'))['rating__avg']
+    rating_max = Rating.objects.filter(user=pk).aggregate(Max('rating'))['rating__max']
+    rating_min = Rating.objects.filter(user=pk).aggregate(Min('rating'))['rating__min']
 
-    context = {'user': user, 'ratings': ratings}
+    context = {'user': user, 'ratings': ratings, 'ratingCount': rating_count, 'ratingAvg': rating_avg, 'ratingMax':rating_max, 'ratingMin':rating_min}
     return render(request, "restaurants/profile.html", context)
 
 @ login_required(login_url="login")
