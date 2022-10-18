@@ -25,13 +25,16 @@ def loginPage(request):
         username = request.POST.get('username').lower()
         password = request.POST.get('password')
 
+        # USERNAME AND PASSWORD VALIDATION
         try:
             user = User.objects.get(username=username)
+            if not user.check_password(password):
+                messages.error(request, "Username or password is incorrect.")
         except:
-            messages.error(request, "Username does not exist.")
+            messages.error(request, "Username or password is incorrect.")
 
         user = authenticate(request, username=username, password=password)
-
+        
         if user is not None:
             login(request, user)
             return redirect('/')
