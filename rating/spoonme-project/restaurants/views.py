@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator
 from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Avg, Max, Min
-import joblib
+import joblib # did I keep this import because I decided to go this way?
 
 from .models import Rating, Restaurant
 from .forms import RatingForm, RegisterForm, RestaurantCreationForm, RestaurantUpdateForm
