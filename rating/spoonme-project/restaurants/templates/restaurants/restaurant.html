@@ -30,7 +30,7 @@
 <div>
     <h1 class="display-4 text-center">{{restaurant.name}}<!--<a class="btn darkBlue btn-lg ml-3" href="https://www.google.com/search?q={{restaurant.name}}" target="_blank">Google</a>-->
       {% if reviews %}
-      <span class="badge rounded-pill">{{ratingAvg}}&#9733;</span>
+      <span class="badge rounded-pill">{{ratingAvg | floatformat:2}}&#9733;</span>
       {% endif %}
 
       <!--ADD ADDRESS FROM SCRAPING?-->

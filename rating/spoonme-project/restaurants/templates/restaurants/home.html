@@ -35,12 +35,10 @@
         <div class="col-sm-6">
           <div class="card border-secondary text-center" style="height: 197px;">
             <div class="card-body">
-              <h5 class="card-title">You Might Like...</h5>
-              <p class="card-text">Display Top N Recommendations</p>
-              <p class="card-text">Filler Text</p>
-              <p class="card-text">Links to the restaurant</p>
-             
-                <!-- <button class="btn darkBlue" type="submit" name="recommend">Recommend</button> -->
+              <h5 class="card-title">Based off your reviews, you might like...</h5>
+              {% for i in recs %}
+              <p class="card-text">{{i.name}}</p>
+              {% endfor %}
             
             </div>
           </div>
@@ -50,12 +48,10 @@
           <div class="card border-secondary text-center" style="height: 197px;">
             <div class="card-body">
               <h5 class="card-title">Popular Amongst Our Users...</h5>
-              <p class="card-text">Display Top N Recommendations</p>
-              <p class="card-text">Filler Text</p>
-              <p class="card-text">Start Reviewing to Receive Personalized Recommendations</p>
-             
-                <!-- <button class="btn darkBlue" type="submit" name="recommend">Recommend</button> -->
-            
+              <p class="card-text">NO REVIEWS</p>
+              <!-- {% for a in avgs %}
+              <p class="card-text">{{a}}</p>
+              {% endfor %} -->
             </div>
           </div>
         </div>

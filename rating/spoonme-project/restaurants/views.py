@@ -8,14 +8,28 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator
 from django.contrib.admin.views.decorators import staff_member_required
-from django.db.models import Avg, Max, Min
-import joblib # did I keep this import because I decided to go this way?
+from django.db.models import Avg, Max, Min, Count, Sum
+# import joblib
+import pandas as pd
+import json
 
 from .models import Rating, Restaurant
 from .forms import RatingForm, RegisterForm, RestaurantCreationForm, RestaurantUpdateForm
 from .decorators import unauthenticated_user
+from .svd import computeSVD
 
-### ADD RECOMMENDATION TO BUTTON --> FILTER FOR USERS WITH RATINGS-- APPEAR IN MODAL?
+def computeRecommend(request):
+    reviews = Rating.objects.all()
+    restaurants = Restaurant.objects.all()
+    reviews_df = pd.DataFrame.from_records(reviews.values('user', 'restaurant', 'rating'))
+    restaurants_df = pd.DataFrame.from_records(restaurants.values('id', 'name'))
+    reviews_df = reviews_df.merge(restaurants_df, how='inner', left_on='restaurant', right_on='id')
+    reviews_df = reviews_df[['user', 'name', 'rating']]
+    recs = computeSVD(reviews_df)
+    newRecs = recs.merge(reviews_df, how='outer', on=['user', 'name'], indicator=True)
+    newRecs = newRecs[newRecs['_merge'] == 'left_only']
+    newRecs = newRecs[['user', 'name']]
+    return newRecs
 
 @unauthenticated_user
 def loginPage(request):
@@ -73,7 +87,16 @@ def registerUser(request):
 
 def home(request):
     ratings = Rating.objects.filter(user=request.user)
-    context={'ratings': ratings}
+    ### THIS WILL NOT BE EFFICIENT FOR LARGE NUMBER OF USERS -- API?
+    recommendations = computeRecommend(request)
+    recommendations = recommendations[recommendations['user'] == request.user.id].head(3)
+    json_records = recommendations.reset_index().to_json(orient='records')
+    arr = []
+    arr = json.loads(json_records)
+
+    # list for users with no reviews
+
+    context={'ratings': ratings, 'recs': arr}
     return render(request, "restaurants/home.html", context)
 
 def restaurant(request, pk):
