@@ -165,11 +165,17 @@ def addRating(request):
 
     if request.method == 'POST':
         form = RatingForm(request.POST)
-        if form.is_valid():
-            user_rating = form.save(commit=False)
-            user_rating.user = request.user
-            user_rating.save()
-            return redirect('addrating')
+        try:
+            
+            if form.is_valid():
+                user_rating = form.save(commit=False)
+                user_rating.user = request.user
+                user_rating.save()
+                return redirect('addrating')
+        except:
+            restaurant = form.data['restaurant']
+            restaurant = Restaurant.objects.get(id=restaurant)
+            messages.error(request, "You've already reviewed {}. Please select a different restaurant.".format(restaurant))
 
     context = {'form': form}
     return render(request, "restaurants/rating-form.html", context)

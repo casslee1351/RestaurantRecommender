@@ -135,6 +135,14 @@
                 location.href = "{% url 'ratings'%}";
             };
         </script>
+        <script>
+            var message_tag = document.getElementById("review-message");
+            
+            setTimeout(function(){ 
+               message_tag.style.display = "none";
+            }, 3000); 
+            
+            </script>
     
 <!-- END SCRIPT -->
     </body>

@@ -37,6 +37,19 @@
       }
     
 </style>
+{% if messages %}
+        <div class="messages">
+
+            {% for message in messages %}
+            <div id="review-message" class="alert alert-danger ml-5 mr-5" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                {{message}}
+            </div>
+            {% endfor %}
+        </div>
+{% endif %}
 <form method="POST" action=""> 
     {% csrf_token %}
     <div class="container">

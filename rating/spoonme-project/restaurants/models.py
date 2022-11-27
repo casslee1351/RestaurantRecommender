@@ -26,6 +26,7 @@ class Rating(models.Model):
 
     class Meta:
         ordering = ['-updated', '-created']
+        unique_together = [['user', 'restaurant']]
 
     def __str__(self):
         return self.restaurant, str(self.rating), self.user.id
