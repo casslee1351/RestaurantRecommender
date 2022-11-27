@@ -160,7 +160,6 @@ def userProfile(request, pk):
 
 @ login_required(login_url="login")
 def addRating(request):
-    # need to make reviews unique to user and restaurant?
     form = RatingForm()
 
     if request.method == 'POST':
