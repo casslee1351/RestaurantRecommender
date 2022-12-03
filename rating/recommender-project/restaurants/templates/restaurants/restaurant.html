@@ -33,7 +33,6 @@
       <span class="badge rounded-pill">{{ratingAvg | floatformat:2}}&#9733;</span>
       {% endif %}
 
-      <!--ADD ADDRESS FROM SCRAPING?-->
       {% if request.user.is_superuser %}
       <a class="btn btn-danger btn-lg" href="{% url 'delete-restaurant' restaurant.id %}">Delete</a>
       <a class="btn btn-secondary btn-lg" href="{% url 'update-restaurant' restaurant.id %}">Update</a>
@@ -49,7 +48,6 @@
       
 </div>
 
-<!-- ADD ADDRESS? -->
 {% if reviews %}
 <div class="left-section">
 
@@ -83,7 +81,7 @@
 </div>
 {% endif %}
 
-<!--Add card to display similar restaurants --> 
+<!--Add card to display similar restaurants - RESEARCH ON HOW TO FIND CLUSTERS IN THE DATA --> 
 <div class="col-sm-6" id="similar-restaurants">
   <div class="card border-secondary">
       <div class="card-header">
