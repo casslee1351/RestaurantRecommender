@@ -2,24 +2,23 @@ import pandas as pd
 import numpy as np
 from scipy.sparse.linalg import svds
 
-import joblib
+# import joblib
 
-def train_svd(data):
-    # Compute the SVD of the data
-    U, s, Vt = svds(data, k=20)
-    # Create the SVD model
-    model = (U, s, Vt)
-    # Save the model to a file using joblib
-    joblib.dump(model, 'svd_model.joblib')
+# def train_svd(df):
 
-def predict_svd(user_id, item_id):
-    # Load the SVD model from the file using joblib
-    U, s, Vt = joblib.load('svd_model.joblib')
-    # Compute the predicted rating for the user and item
-    pred_rating = (U[user_id - 1, :] * np.diag(s) * Vt[:, item_id - 1]).sum()
-    # Return the predicted rating
-    return pred_rating
-### TODO: TEST JOBLIB IMPLEMENTATION - EDIT TRAIN AND PREDICT FUNCTIONS TO SUIT MY USE CASE
+#     df['rating'] = df['rating'].astype('float')
+#     pivoted = pd.pivot_table(data=df, index="user", columns="name", values="rating", fill_value=0., aggfunc=np.sum)
+#     avg = pivoted.mean(axis=1)
+#     user_item_centered = pivoted.sub(avg, axis=0).to_numpy()
+#     # Compute the SVD of the data
+#     U, s, Vt = svds(user_item_centered, k=5)
+#     # Create the SVD model
+#     model = (U, s, Vt)
+#     # Save the model to a file using joblib
+#     joblib.dump(model, 'svd_model.joblib')
+
+
+# ### TODO: TEST JOBLIB IMPLEMENTATION - EDIT TRAIN AND PREDICT FUNCTIONS TO SUIT MY USE CASE
 def computeSVD(df):
     """
     columns of df must be in user, name, rating format

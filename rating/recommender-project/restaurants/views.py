@@ -12,12 +12,14 @@ from django.db.models import Avg, Max, Min, Count, Sum
 # import joblib
 import pandas as pd
 import json
+import numpy as np
 
 from .models import Rating, Restaurant
 from .forms import RatingForm, RegisterForm, RestaurantCreationForm, RestaurantUpdateForm
 from .decorators import unauthenticated_user
 from .svd import computeSVD
 
+# U, s, Vt = joblib.load('svd_model.joblib')
 # revisit
 def computeRecommend(request):
     reviews = Rating.objects.all()
@@ -27,6 +29,7 @@ def computeRecommend(request):
     reviews_df = reviews_df.merge(restaurants_df, how='inner', left_on='restaurant', right_on='id')
     reviews_df = reviews_df[['user', 'name', 'rating']] # get df into format for SVD
     recs = computeSVD(reviews_df)
+    
     newRecs = recs.merge(reviews_df, how='outer', on=['user', 'name'], indicator=True)
     newRecs = newRecs[newRecs['_merge'] == 'left_only']
     newRecs = newRecs[['user', 'name']]
@@ -88,7 +91,7 @@ def registerUser(request):
 
 def home(request):
     ratings = Rating.objects.filter(user=request.user)
-    ### THIS WILL NOT BE EFFICIENT FOR LARGE NUMBER OF USERS -- API?
+    # compute recs for user
     recommendations = computeRecommend(request)
     recommendations = recommendations[recommendations['user'] == request.user.id].head(3)
     json_records = recommendations.reset_index().to_json(orient='records')
