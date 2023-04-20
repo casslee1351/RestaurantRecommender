@@ -18,13 +18,14 @@ from .forms import RatingForm, RegisterForm, RestaurantCreationForm, RestaurantU
 from .decorators import unauthenticated_user
 from .svd import computeSVD
 
+# revisit
 def computeRecommend(request):
     reviews = Rating.objects.all()
     restaurants = Restaurant.objects.all()
     reviews_df = pd.DataFrame.from_records(reviews.values('user', 'restaurant', 'rating'))
     restaurants_df = pd.DataFrame.from_records(restaurants.values('id', 'name'))
     reviews_df = reviews_df.merge(restaurants_df, how='inner', left_on='restaurant', right_on='id')
-    reviews_df = reviews_df[['user', 'name', 'rating']]
+    reviews_df = reviews_df[['user', 'name', 'rating']] # get df into format for SVD
     recs = computeSVD(reviews_df)
     newRecs = recs.merge(reviews_df, how='outer', on=['user', 'name'], indicator=True)
     newRecs = newRecs[newRecs['_merge'] == 'left_only']
