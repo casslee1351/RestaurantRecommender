@@ -2,21 +2,6 @@ import pandas as pd
 import numpy as np
 from scipy.sparse.linalg import svds
 
-# import joblib
-
-# def train_svd(df):
-
-#     df['rating'] = df['rating'].astype('float')
-#     pivoted = pd.pivot_table(data=df, index="user", columns="name", values="rating", fill_value=0., aggfunc=np.sum)
-#     avg = pivoted.mean(axis=1)
-#     user_item_centered = pivoted.sub(avg, axis=0).to_numpy()
-#     # Compute the SVD of the data
-#     U, s, Vt = svds(user_item_centered, k=5)
-#     # Create the SVD model
-#     model = (U, s, Vt)
-#     # Save the model to a file using joblib
-#     joblib.dump(model, 'svd_model.joblib')
-
 
 # ### TODO: TEST JOBLIB IMPLEMENTATION - EDIT TRAIN AND PREDICT FUNCTIONS TO SUIT MY USE CASE
 def computeSVD(df):

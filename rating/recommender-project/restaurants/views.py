@@ -9,7 +9,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator
 from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Avg, Max, Min, Count, Sum
-# import joblib
 import pandas as pd
 import json
 import numpy as np
@@ -19,8 +18,7 @@ from .forms import RatingForm, RegisterForm, RestaurantCreationForm, RestaurantU
 from .decorators import unauthenticated_user
 from .svd import computeSVD
 
-# U, s, Vt = joblib.load('svd_model.joblib')
-# revisit
+
 def computeRecommend(request):
     reviews = Rating.objects.all()
     restaurants = Restaurant.objects.all()
