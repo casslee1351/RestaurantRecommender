@@ -18,6 +18,14 @@ from .forms import RatingForm, RegisterForm, RestaurantCreationForm, RestaurantU
 from .decorators import unauthenticated_user
 from .svd import computeSVD
 
+### TODO: MERGE CHANGES BACK TO MASTER BRANCH AND COMMIT CHANGES TO REMOTE REPO
+
+### Focus on improving what we have so far... SVD recommendations. If user has ratings, the recs will appear automatically.
+### take off some of the filler content and work on refining the home page.
+### Idea: add random restaurant button
+# may use a random number generation and match to nearest restaurant id. some restaurants may be removed from database
+# so which ever id is closest without going over?
+# Ways to improve the database - gather metadata on restaurants. some fields are incomplete
 
 def computeRecommend(request):
     reviews = Rating.objects.all()
@@ -88,6 +96,7 @@ def registerUser(request):
     return render(request, "restaurants/login_register.html", context)
 
 def home(request):
+
     ratings = Rating.objects.filter(user=request.user)
     # compute recs for user
     recommendations = computeRecommend(request)
@@ -96,7 +105,7 @@ def home(request):
     arr = []
     arr = json.loads(json_records)
 
-    # list for users with no reviews
+    ### TODO: Add list of things to display for users with no reviews
 
     context={'ratings': ratings, 'recs': arr}
     return render(request, "restaurants/home.html", context)
