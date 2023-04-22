@@ -22,13 +22,12 @@
         <div class="col-sm-6">
             <div class="card border-secondary" style="width: 34rem;">
                 <div class="card-header">
-                Best Pho in Wichita
+                What Cass recommends at <a href="http://127.0.0.1:8000/restaurant/6/">Pho Cuong</a><!-- ADD HIGHEST RATED RESTAURANTS TO LIST? -->
                 </div>
                 <ul class="list-group list-group-flush">
-                <li class="list-group-item"><a href="http://127.0.0.1:8000/restaurant/6/">Pho Cuong</a></li>
-                <!-- These still need to be changed - might just be my favorites? featured content? -->
-                <li class="list-group-item">Asian Bistro</li>
-                <li class="list-group-item">Saigon Bistro</li>
+                <li class="list-group-item">Pho Tai Bo Vien</li>
+                <li class="list-group-item">Vietnamese Coffee</li>
+                <li class="list-group-item">Banh Mi Thit Nuong</li>
                 </ul>
             </div>
         </div>
@@ -45,27 +44,12 @@
           </div>
         </div>
       </div>
-      <div class="row d-flex justify-content-center">
-        <div class="col-sm-6">
-            <div class="card border-info">
-                <div class="card-header">
-                Users similar to you also liked...
-                </div>
-                <ul class="list-group list-group-flush">
-                <li class="list-group-item">test 1</li>
-                <li class="list-group-item">test 1</li>
-                <li class="list-group-item">test 1</li>
-                </ul>
-            </div>
-        </div>
-       
-    </div>
         {% else %}
         <div class="col-sm-6">
           <div class="card border-secondary text-center" style="height: 197px;">
             <div class="card-body">
               <h5 class="card-title">Popular Amongst Our Users...</h5>
-              <p class="card-text">NO REVIEWS</p>
+              <p class="card-text">NO REVIEWS - start rating to see content!</p>
               <!-- {% for a in avgs %}
               <p class="card-text">{{a}}</p>
               {% endfor %} -->
@@ -77,21 +61,14 @@
         <div class="col-sm-6">
             <div class="card border-info">
                 <div class="card-header">
-                Featured Content
+                Cassidy's Favorite Local Spots
                 </div>
                 <ul class="list-group list-group-flush">
-                <li class="list-group-item">test 1</li>
-                <li class="list-group-item">test 1</li>
-                <li class="list-group-item">test 1</li>
+                <li class="list-group-item">The Monarch</li>
+                <li class="list-group-item">Pho Cuong</li>
+                <li class="list-group-item">Yokohama Ramen</li>
                 </ul>
             </div>
-        </div>
-        <div class="card text-bg-info mb-3" style="max-width: 18rem;">
-          <div class="card-header">Header</div>
-          <div class="card-body">
-            <h5 class="card-title">Info card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
         </div>
       </div>
     </div>

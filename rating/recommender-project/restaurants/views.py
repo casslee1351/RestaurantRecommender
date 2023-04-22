@@ -18,8 +18,6 @@ from .forms import RatingForm, RegisterForm, RestaurantCreationForm, RestaurantU
 from .decorators import unauthenticated_user
 from .svd import computeSVD
 
-### TODO: MERGE CHANGES BACK TO MASTER BRANCH AND COMMIT CHANGES TO REMOTE REPO
-
 ### Focus on improving what we have so far... SVD recommendations. If user has ratings, the recs will appear automatically.
 ### take off some of the filler content and work on refining the home page.
 ### Idea: add random restaurant button
