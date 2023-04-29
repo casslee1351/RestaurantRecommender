@@ -33,7 +33,7 @@
         </div>
 {% if ratings %}
         <div class="col-sm-6">
-          <div class="card border-secondary text-center" style="height: 197px;">
+          <!-- <div class="card border-secondary text-center" style="height: 197px;">
             <div class="card-body">
               <h5 class="card-title">Based off your reviews, you might like...</h5>
               {% for i in recs %}
@@ -41,7 +41,18 @@
               {% endfor %}
             
             </div>
-          </div>
+          </div> -->
+
+          <div class="card border-secondary" style="width: 34rem;">
+            <div class="card-header">
+              Based off your reviews, you might like...
+            </div>
+            <ul class="list-group list-group-flush">
+              {% for i in recs %}
+              <li class="list-group-item"><a href="http://127.0.0.1:8000/restaurant/{{i.id}}/">{{i.name}}</a></li>
+              {% endfor %}
+            </ul>
+        </div>
         </div>
       </div>
         {% else %}

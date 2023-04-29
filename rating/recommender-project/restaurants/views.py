@@ -36,7 +36,8 @@ def computeRecommend(request):
     
     newRecs = recs.merge(reviews_df, how='outer', on=['user', 'name'], indicator=True)
     newRecs = newRecs[newRecs['_merge'] == 'left_only']
-    newRecs = newRecs[['user', 'name']]
+    newRecs = newRecs.merge(restaurants_df, how='inner', left_on='name', right_on='name')
+    newRecs = newRecs[['user', 'name', 'id']]
     return newRecs
 
 @unauthenticated_user
@@ -102,8 +103,6 @@ def home(request):
     json_records = recommendations.reset_index().to_json(orient='records')
     arr = []
     arr = json.loads(json_records)
-
-    ### TODO: Add list of things to display for users with no reviews
 
     context={'ratings': ratings, 'recs': arr}
     return render(request, "restaurants/home.html", context)
