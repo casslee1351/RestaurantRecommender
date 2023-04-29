@@ -2,8 +2,6 @@ import pandas as pd
 import numpy as np
 from scipy.sparse.linalg import svds
 
-
-# ### TODO: TEST JOBLIB IMPLEMENTATION - EDIT TRAIN AND PREDICT FUNCTIONS TO SUIT MY USE CASE
 def computeSVD(df):
     """
     columns of df must be in user, name, rating format

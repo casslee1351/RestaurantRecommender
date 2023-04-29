@@ -18,11 +18,9 @@ from .forms import RatingForm, RegisterForm, RestaurantCreationForm, RestaurantU
 from .decorators import unauthenticated_user
 from .svd import computeSVD
 
-### Focus on improving what we have so far... SVD recommendations. If user has ratings, the recs will appear automatically.
-### take off some of the filler content and work on refining the home page.
+### refine the home page.
 ### Idea: add random restaurant button
-# may use a random number generation and match to nearest restaurant id. some restaurants may be removed from database
-# so which ever id is closest without going over?
+# may use a random number generation
 # Ways to improve the database - gather metadata on restaurants. some fields are incomplete
 
 def computeRecommend(request):
